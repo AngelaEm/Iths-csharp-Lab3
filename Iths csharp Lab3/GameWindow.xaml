@@ -32,13 +32,13 @@
 
         <TextBlock Text="Quizzy Trivia" Grid.Column="2" Grid.Row="1" FontSize="32" Width="200" Height="40"   Foreground="Cyan" />
         <Image Source="C:\Users\Angela\OneDrive\0 IT-höskolan\c#\Iths csharp Lab3\Iths csharp Lab3\bin\Debug\net7.0-windows\Questionmark.png"  Width="100" Grid.Column="3" Grid.Row="1" Grid.RowSpan="2"/>
-        <Button x:Name="Question" Content="Se fråga" Height="70" Width="150" Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" Margin="15" Click="Question_Click"/>
-        <TextBox x:Name ="QuestionTB" Height="auto" Width="auto" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3"/>
-        <Button x:Name="Answer1Button" Content="" Height="40" Width="170" Grid.Column="2" Grid.Row="5" VerticalAlignment="Center"  Margin="10" Click="Answer1Button_Click"/>
-        <Button x:Name="Answer2Button" Content="" Height="40" Width="170" Grid.Column="2" Grid.Row="6" VerticalAlignment="Center"  Margin="10" Click="Answer2Button_Click"/>
-        <Button x:Name="Answer3Button" Content="" Height="40" Width="170" Grid.Column="2" Grid.Row="7" VerticalAlignment="Center"  Margin="10" Click="Answer3Button_Click"/>
+        <Button x:Name="Question" Content="Start" Height="70" Width="150" Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" Margin="15" Click="Question_Click"/>
+        <TextBox x:Name ="QuestionTB" TextWrapping="Wrap" Height="auto" Width="450" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3"/>
+        <Button x:Name="Answer1Button" Content="" Height="40" Width="250" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"  Margin="10" Click="Answer1Button_Click"/>
+        <Button x:Name="Answer2Button" Content="" Height="40" Width="250" Grid.Column="2" Grid.Row="5" VerticalAlignment="Center"  Margin="10" Click="Answer2Button_Click"/>
+        <Button x:Name="Answer3Button" Content="" Height="40" Width="250" Grid.Column="3" Grid.Row="5" VerticalAlignment="Center"  Margin="10" Click="Answer3Button_Click"/>
         <Button x:Name="BackToMainWindow" Content="Back to main window" Height="40" Width="170" Grid.Column="3" Grid.Row="8" VerticalAlignment="Center"  Margin="10" Click="BackToMainWindow_Click"/>
-        <ProgressBar x:Name="MadeQuestionProgressBar" Width="200" Height="20" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2"/>
+        <ProgressBar x:Name="MadeQuestionProgressBar"  Width="200" Height="20" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2"/>
 
 
     </Grid>

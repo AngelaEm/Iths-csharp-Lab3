@@ -23,21 +23,20 @@ namespace Iths_csharp_Lab3
         
         Question currentQuestion = null;
         Quiz currentQuiz = new Quiz();
+        
+
 
         public GameWindow()
         {
             InitializeComponent();
-            currentQuiz.GenerateFolderAndTextFile();
+            
+            currentQuiz = GenerateQuiz("Programming", "Mathematics");
         }
 
         private void Question_Click(object sender, RoutedEventArgs e)
         {
-            currentQuestion = (currentQuiz.GetRandomQuestion());
-            QuestionTB.Text = currentQuestion.Statement;
-
-            Answer1Button.Content = currentQuestion.Answers[0];
-            Answer2Button.Content = currentQuestion.Answers[1];
-            Answer3Button.Content = currentQuestion.Answers[2];
+            LoadNextQuestion();
+            
 
 
         }
@@ -46,12 +45,11 @@ namespace Iths_csharp_Lab3
         {
             if (currentQuestion != null && currentQuestion.CorrectAnswer == 0)
             {
-                MessageBox.Show("Correct answer!");
+                MadeQuestionProgressBar.Value += 10;
             }
-            else
-            {
-                MessageBox.Show("Wrong answer!");
-            }
+            
+            LoadNextQuestion();
+            
 
         }
 
@@ -59,26 +57,24 @@ namespace Iths_csharp_Lab3
         {
             if (currentQuestion != null && currentQuestion.CorrectAnswer == 1)
             {
-                MessageBox.Show("Correct answer!");
+                
+                MadeQuestionProgressBar.Value += 10;
             }
-            else
-            {
-                MessageBox.Show("Wrong answer!");
-            }
-
+            
+            LoadNextQuestion();
+            
         }
 
         private void Answer3Button_Click(object sender, RoutedEventArgs e)
         {
             if (currentQuestion != null && currentQuestion.CorrectAnswer == 2)
             {
-                MessageBox.Show("Correct answer!");
+               
+                MadeQuestionProgressBar.Value += 10;
             }
-            else
-            {
-                MessageBox.Show("Wrong answer!");
-            }
-
+           
+            LoadNextQuestion();
+            
         }
 
         private void BackToMainWindow_Click(object sender, RoutedEventArgs e)
@@ -88,5 +84,56 @@ namespace Iths_csharp_Lab3
             this.Close();
 
         }
+
+        private Quiz GenerateQuiz(params string[] categories)
+        {
+            currentQuiz.GenerateQuestions();
+
+            Quiz newQuiz = null;
+
+            foreach (var category in categories)
+            {
+                foreach (var question in currentQuiz.Questions)
+                {
+                    if (question.Category == category)
+                    {
+                        if (newQuiz == null)
+                        {
+                            newQuiz = new Quiz();
+                            
+
+                        }
+
+                        newQuiz.AddToQuiz(question);
+
+                    }
+                }
+            }
+            
+            return newQuiz;
+        }
+
+        private async void LoadNextQuestion()
+        {
+            if (currentQuiz != null && currentQuiz.Questions.Any())
+            {
+                currentQuestion = (currentQuiz.GetRandomQuestion());
+
+                QuestionTB.Text = currentQuestion.Statement;
+
+                Answer1Button.Content = currentQuestion.Answers[0];
+                Answer2Button.Content = currentQuestion.Answers[1];
+                Answer3Button.Content = currentQuestion.Answers[2];
+
+                currentQuiz.RemoveQuestion(currentQuestion);
+            }
+ 
+            else
+            {
+                MessageBox.Show("Game is over");
+            }
+            
+        }     
+
     }
 }

@@ -15,6 +15,9 @@ namespace Iths_csharp_Lab3.Models
     {
         private List<Question> _questions;
 
+        //public List<Quiz> _listWithDifferentQuiz = new List<Quiz>();
+
+
         private string _title = string.Empty;
         public IEnumerable<Question> Questions => _questions;
         public string Title => _title;
@@ -22,6 +25,7 @@ namespace Iths_csharp_Lab3.Models
         public Quiz()
         {
             _questions = new List<Question>();
+            
         }
 
         public Question GetRandomQuestion()
@@ -30,21 +34,27 @@ namespace Iths_csharp_Lab3.Models
             int randomIndex = random.Next(0, _questions.Count);
 
             return _questions[randomIndex];
-
-            //throw new NotImplementedException("A random Question needs to be returned here!");
+            
         }
 
         public void AddQuestion(int id, string category, string statement, int correctAnswer, params string[] answers)
         {
-            var newQuestion = new Question(id, category, statement, correctAnswer, answers);
+            Question newQuestion = new Question(id, category, statement, correctAnswer, answers);
             _questions.Add(newQuestion);
 
-            // throw new NotImplementedException("Question need to be instantiated and added to list of questions here!");
+            
         }
 
-        public void RemoveQuestion(int index)
+        public void AddToQuiz(Question question)
         {
-            throw new NotImplementedException("Question at requested index need to be removed here!");
+            _questions.Add(question);
+        }
+
+        
+
+        public void RemoveQuestion(Question question)
+        {
+            _questions.Remove(question);
         }
 
        
@@ -76,6 +86,8 @@ namespace Iths_csharp_Lab3.Models
                 MessageBox.Show(e.Message);
             }
         }
+
+       
 
         public void GenerateQuestions()
         {
