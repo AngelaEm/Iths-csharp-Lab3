@@ -12,6 +12,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
+using System.Linq;
+
 
 namespace Iths_csharp_Lab3
 {
@@ -22,102 +25,174 @@ namespace Iths_csharp_Lab3
     {
         
         Question currentQuestion = null;
+
         Quiz currentQuiz = new Quiz();
-        
+
+
+        public List<string> SelectedCategories { get; set; }
+
+        public Quiz SelectedQuiz { get; set; }
+
+        private int answeredQuestions = 0;
+
+        private double corrextAnsweredQuestions = 0;
+
+        private double questionsInQuiz = 0;
+
+        double percentage;
 
 
         public GameWindow()
         {
             InitializeComponent();
+
+            SetQuestionImage("questionmark.png");
             
-            currentQuiz = GenerateQuiz("Programming", "Mathematics");
         }
+            
 
         private void Question_Click(object sender, RoutedEventArgs e)
         {
+            QuestionButton.Content = "Score";
+       
+
+            if (SelectedQuiz != null)
+            {               
+                currentQuiz = SelectedQuiz;                     
+            }
+            else if (SelectedCategories != null && SelectedCategories.Count > 0)
+            {         
+               
+                currentQuiz = GenerateQuiz(SelectedCategories);           
+            }
+            else
+            {             
+                MessageBox.Show("Please select a quiz or categories to proceed.");
+                return;
+            }
+
+            questionsInQuiz = currentQuiz.Questions.Count();
             LoadNextQuestion();
-            
-
-
         }
+
+
 
         private void Answer1Button_Click(object sender, RoutedEventArgs e)
         {
-            if (currentQuestion != null && currentQuestion.CorrectAnswer == 0)
+            answeredQuestions++;
+
+            if (currentQuestion.CorrectAnswer == 0)
             {
-                MadeQuestionProgressBar.Value += 10;
+                corrextAnsweredQuestions++;
+
             }
-            
+
+            DisplayResult();
             LoadNextQuestion();
-            
 
         }
 
         private void Answer2Button_Click(object sender, RoutedEventArgs e)
         {
-            if (currentQuestion != null && currentQuestion.CorrectAnswer == 1)
+            answeredQuestions++;
+
+            if (currentQuestion.CorrectAnswer == 1)
             {
-                
-                MadeQuestionProgressBar.Value += 10;
+                corrextAnsweredQuestions++;
+
             }
-            
+
+            DisplayResult();
             LoadNextQuestion();
-            
+
         }
 
         private void Answer3Button_Click(object sender, RoutedEventArgs e)
         {
-            if (currentQuestion != null && currentQuestion.CorrectAnswer == 2)
+            answeredQuestions++;
+
+            if (currentQuestion.CorrectAnswer == 2)
             {
-               
-                MadeQuestionProgressBar.Value += 10;
+                corrextAnsweredQuestions++;
+
             }
            
+            DisplayResult();
             LoadNextQuestion();
-            
-        }
-
-        private void BackToMainWindow_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Close();
 
         }
 
-        private Quiz GenerateQuiz(params string[] categories)
-        {
-            currentQuiz.GenerateQuestions();
+       
 
+        private Quiz GenerateQuiz(List<string> categories)
+        {
             Quiz newQuiz = null;
 
-            foreach (var category in categories)
+            currentQuiz.GenerateQuestions();
+         
+
+            if (categories.Contains("Mixed Questions"))
             {
-                foreach (var question in currentQuiz.Questions)
+                newQuiz = new Quiz();
+
+                for (int i = 0; i < 5; i++)
                 {
-                    if (question.Category == category)
+                    newQuiz.AddToQuiz(currentQuiz.GetRandomQuestion());
+                }
+
+            }
+            else
+            {
+
+                foreach (var category in categories)
+                {
+                    foreach (var question in currentQuiz.Questions)
                     {
-                        if (newQuiz == null)
+                        if (question.Category == category)
                         {
-                            newQuiz = new Quiz();
-                            
+                            if (newQuiz == null)
+                            {
+                                newQuiz = new Quiz();
 
+                            }
+                            else if (newQuiz.Questions.Count() < 5)
+                            {
+                                newQuiz.AddToQuiz(question);
+                            }
+                            else
+                            {
+                                break;
+                            }
                         }
-
-                        newQuiz.AddToQuiz(question);
-
                     }
                 }
             }
             
+            
+
             return newQuiz;
         }
 
-        private async void LoadNextQuestion()
+        private void DisplayResult()
+        {
+            QuestionButton.Content = $"{corrextAnsweredQuestions}/{answeredQuestions}";
+            percentage = (corrextAnsweredQuestions / answeredQuestions) * 100;
+            ScoreTB.Text = $"{Math.Round(percentage, 2)}%";
+            MadeQuestionProgressBar.Value += 100 / questionsInQuiz;
+        }
+       
+
+        private void LoadNextQuestion()
         {
             if (currentQuiz != null && currentQuiz.Questions.Any())
             {
+                
                 currentQuestion = (currentQuiz.GetRandomQuestion());
+
+                if (currentQuestion.ImagePath != null)
+                {
+                    SetQuestionImage(currentQuestion.ImagePath);
+                }
 
                 QuestionTB.Text = currentQuestion.Statement;
 
@@ -130,10 +205,47 @@ namespace Iths_csharp_Lab3
  
             else
             {
-                MessageBox.Show("Game is over");
-            }
-            
-        }     
+               
+                
+                MessageBox.Show($"Well done! You scored {corrextAnsweredQuestions}/{answeredQuestions}!");
+                corrextAnsweredQuestions = 0;
+                answeredQuestions = 0;
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close();
+            }           
+        }
 
+        private void SetQuestionImage(string imagePath)
+        {
+            try
+                {
+                    BitmapImage image = new BitmapImage();
+                    image.BeginInit();
+                    image.UriSource = new Uri(imagePath, UriKind.RelativeOrAbsolute);
+
+                    if (imagePath.StartsWith("http://") || imagePath.StartsWith("https://"))
+                    {
+                        image.CacheOption = BitmapCacheOption.OnLoad;
+                    }
+
+                    image.EndInit();
+                    QuestionImage.Source = image;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Det gick inte att ladda bilden: {ex.Message}");
+                }
+            
+        }
+
+
+        private void BackToMainWindow_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+
+        }
     }
 }

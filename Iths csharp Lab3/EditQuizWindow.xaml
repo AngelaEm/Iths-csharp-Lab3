@@ -1,0 +1,95 @@
+﻿<Window x:Class="Iths_csharp_Lab3.EditQuizWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Iths_csharp_Lab3"
+        mc:Ignorable="d" FontSize="16" FontWeight="Bold" Background="LightCoral" FontFamily="Comic Sans MS" Foreground="Cyan"
+        Title="EditQuizWindow" Height="450" Width="900">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Quizzy Trivia" Grid.Column="4" Grid.Row="1" FontSize="32" Width="220" Height="40" Foreground="Cyan" VerticalAlignment="Center" Margin="5"/>
+        <Image x:Name="BildLogga" Source="quizLogga2.png" Width="350" Height="110" Grid.Column="4" Grid.Row="2" Grid.RowSpan="2"  VerticalAlignment="Center"/>
+
+        <Label Content="Choose Quiz" FontWeight="Bold" Background="Cyan" Foreground="LightCoral" Grid.Column="3" Grid.Row="5"  Height="30" Width="200"/>
+        <ComboBox Name="EditQuizCB" Text="Choose Quiz" Grid.Column="3" Grid.Row="7" Height="40" Width="150" 
+                  VerticalAlignment="Center" Background="cyan" Foreground="LightCoral" SelectionChanged="EditQuizCB_SelectionChanged">
+        </ComboBox>
+
+        <Label Content="Choose Question" FontWeight="Bold" Background="Cyan" Foreground="LightCoral" Grid.Column="4" Grid.Row="5"  Height="30" Width="200"/>
+        <ListBox x:Name="QuestionLB" Grid.Column="4" Grid.Row="7" SelectionChanged="QuestionLB_SelectionChanged"></ListBox>
+
+        <Label Content="Edit Question" FontWeight="Bold" Background="Cyan" Foreground="LightCoral" Grid.Column="5" Grid.Row="5"  Height="30" Width="200"/>
+        <TextBox x:Name="ChangeQuestionTB" Grid.Column="5" Grid.Row="7" FontSize="12" Width="320" Margin="3" AcceptsReturn="true" TextWrapping="Wrap"/>
+
+
+        <StackPanel Grid.Column="5" Grid.Row="10" Grid.RowSpan="3" Orientation="Horizontal">
+            <TextBox x:Name="ChangeAnswer1TB" FontSize="12" Width="105" Margin="16,0,3,0"
+                     AcceptsReturn="true" TextWrapping="Wrap"/>
+            <TextBox x:Name="ChangeAnswer2TB" FontSize="12" Width="105" Margin="0,0,3,0" 
+                     AcceptsReturn="true" TextWrapping="Wrap"/>
+            <TextBox x:Name="ChangeAnswer3TB" FontSize="12" Width="105" Margin="0,0,3,0" 
+                     AcceptsReturn="true" TextWrapping="Wrap"/>
+        </StackPanel>
+
+        <Grid Grid.Column="5" Grid.Row="14" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+
+            <RadioButton x:Name="Answer1RB" Grid.Column="0" Grid.Row="0" Width="20" Height="20" 
+                         VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <RadioButton x:Name="Answer2RB" Grid.Column="1" Grid.Row="0"  
+                          VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <RadioButton x:Name="Answer3RB" Grid.Column="2" Grid.Row="0"  
+                          VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Grid>
+
+
+        
+
+        <Button Grid.Column="3" Grid.Row="15" Width="150" Height="40" Grid.RowSpan="4" Content="Back to main" Click="Button_Click"/>
+    </Grid>
+</Window>

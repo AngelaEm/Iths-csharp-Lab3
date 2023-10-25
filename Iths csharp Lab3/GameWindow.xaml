@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Iths_csharp_Lab3"
-        mc:Ignorable="d" FontSize="16" FontWeight="Bold" Background="LightCoral"
+        mc:Ignorable="d" FontSize="16" FontWeight="Bold" Background="LightCoral" FontFamily="Comic Sans MS" Foreground="Cyan"
         Title="GameWindow" Height="450" Width="800">
 
     <Grid Margin="5" HorizontalAlignment="Center">
@@ -24,21 +24,26 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Quizzy Trivia" Grid.Column="2" Grid.Row="1" FontSize="32" Width="200" Height="40"   Foreground="Cyan" />
-        <Image Source="C:\Users\Angela\OneDrive\0 IT-höskolan\c#\Iths csharp Lab3\Iths csharp Lab3\bin\Debug\net7.0-windows\Questionmark.png"  Width="100" Grid.Column="3" Grid.Row="1" Grid.RowSpan="2"/>
-        <Button x:Name="Question" Content="Start" Height="70" Width="150" Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" Margin="15" Click="Question_Click"/>
-        <TextBox x:Name ="QuestionTB" TextWrapping="Wrap" Height="auto" Width="450" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3"/>
-        <Button x:Name="Answer1Button" Content="" Height="40" Width="250" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"  Margin="10" Click="Answer1Button_Click"/>
-        <Button x:Name="Answer2Button" Content="" Height="40" Width="250" Grid.Column="2" Grid.Row="5" VerticalAlignment="Center"  Margin="10" Click="Answer2Button_Click"/>
-        <Button x:Name="Answer3Button" Content="" Height="40" Width="250" Grid.Column="3" Grid.Row="5" VerticalAlignment="Center"  Margin="10" Click="Answer3Button_Click"/>
-        <Button x:Name="BackToMainWindow" Content="Back to main window" Height="40" Width="170" Grid.Column="3" Grid.Row="8" VerticalAlignment="Center"  Margin="10" Click="BackToMainWindow_Click"/>
-        <ProgressBar x:Name="MadeQuestionProgressBar"  Width="200" Height="20" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2"/>
+        <TextBlock Text="Quizzy Trivia" Grid.Column="2" Grid.Row="1" FontSize="32" Width="220" Height="40" />
+        <Button x:Name="QuestionButton" Content="Start" Height="40" Width="150" Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" Background="Cyan"   Margin="10" Click="Question_Click"/>
+        <Image x:Name="QuestionImage" Width="100" Grid.Column="2" Grid.Row="4" Grid.RowSpan="2"/>
+        <!--<TextBlock x:Name="ResultTB" Grid.Column="3" Grid.Row="4" Grid.RowSpan="3" FontSize="16" Width="220" Height="40" TextWrapping="Wrap"/>-->
+        <TextBox x:Name ="QuestionTB" TextWrapping="Wrap" Height="60" Width="450" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="3" Grid.RowSpan="2" Background="Cyan" />
+        <Button x:Name="Answer1Button" Content="" Height="50" Width="250" Grid.Column="1" Grid.Row="9" FontSize="12" VerticalAlignment="Center" Background="Cyan"  Margin="5" Click="Answer1Button_Click"/>
+        <Button x:Name="Answer2Button" Content="" Height="50" Width="250" Grid.Column="2" Grid.Row="9" FontSize="12" VerticalAlignment="Center" Background="Cyan"  Margin="5" Click="Answer2Button_Click"/>
+        <Button x:Name="Answer3Button" Content="" Height="50" Width="250" Grid.Column="3" Grid.Row="9" FontSize="12" VerticalAlignment="Center" Background="Cyan"  Margin="5" Click="Answer3Button_Click"/>
+        <TextBlock x:Name="ScoreTB" Text="Correct" Grid.Column="1" Grid.Row="10" FontSize="20" Width="200" Height="30"/>
+        <ProgressBar x:Name="MadeQuestionProgressBar"  Width="300" Height="30" Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="2" Foreground="Cyan"/>
+        <Button x:Name="BackToMainWindow" Content="Back to main window" Height="50" Width="170" Grid.Column="3" Grid.Row="11" VerticalAlignment="Center" Background="Cyan" Margin="5" Click="BackToMainWindow_Click"/>
 
 
     </Grid>
