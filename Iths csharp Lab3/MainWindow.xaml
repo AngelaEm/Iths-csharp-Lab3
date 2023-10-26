@@ -29,7 +29,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="Quizzy Trivia" Grid.Column="2" Grid.Row="1" FontSize="32" Width="220" Height="40"   Foreground="Cyan" />
-        <Image x:Name="BildLogga" Source="quizLogga2.png" Width="350" Height="110" Grid.Column="2" Grid.Row="2"/>
+        <Image x:Name="BildLogga" Source="\Images\quizLogga2.png" Width="350" Height="110" Grid.Column="2" Grid.Row="2"/>
         <Button x:Name="GoToGameWindow" Content="Play Game" Grid.Column="2" Grid.Row="3" Height="40" Width="150" VerticalAlignment="Center" Background="cyan" Foreground="LightCoral" Click="GoToGameWindow_Click_1"/>
         <Button x:Name="GoToAddQuizWindow" Content="Add Quiz" Grid.Column="2" Grid.Row="4" Height="40" Width="150" VerticalAlignment="Center" Background="cyan" Foreground="LightCoral" Click="GoToAddQuizWindow_Click"/>
         <Button x:Name="GoToEditQuizWindow" Content="Edit Quiz" Grid.Column="2" Grid.Row="5" Height="40" Width="150" VerticalAlignment="Center" Background="cyan" Foreground="LightCoral" Click="GoToEditQuizWindow_Click"/>

@@ -123,9 +123,9 @@ namespace Iths_csharp_Lab3.Models
         {
             AddQuestion("Programming", "What does HTML stand for?", 0, "questionmark.png", new string[] {"Hypertext Markup Language", "Hyper Transfer Markup Language", "Hypertext Transfer Mode Language"});
 
-            AddQuestion("Programming", "Which programming language is known for its simplicity and readability?", 2, "loggaQuiz1.png", new string[] {"C++", "Java", "Python"});
+            AddQuestion("Programming", "Which programming language is known for its simplicity and readability?", 2, "\\Images\\loggaQuiz1.png", new string[] {"C++", "Java", "Python"});
 
-            AddQuestion("Programming", "What is the symbol for a single-line comment in C#?", 0, "quizLogga2.png", new string[] { "//", "/*", "#"});
+            AddQuestion("Programming", "What is the symbol for a single-line comment in C#?", 0, "\\Images\\quizLogga2.png", new string[] { "//", "/*", "#"});
 
             AddQuestion("Mathematics", "What is the result of 7 multiplied by 8?", 1, new string[] { "48", "56", "64"});
 
@@ -162,5 +162,7 @@ namespace Iths_csharp_Lab3.Models
             AddQuestion("Nature", "What is the world's largest and heaviest species of penguin?", 0, new string[] {"Emperor Penguin", "King Penguin", "Little Blue Penguin"});
 
         }
+
+        
     }
 }

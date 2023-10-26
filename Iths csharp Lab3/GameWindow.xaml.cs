@@ -46,7 +46,7 @@ namespace Iths_csharp_Lab3
         {
             InitializeComponent();
 
-            SetQuestionImage("questionmark.png");
+            SetQuestionImage("\\Images\\questionmark.png");
             
         }
             

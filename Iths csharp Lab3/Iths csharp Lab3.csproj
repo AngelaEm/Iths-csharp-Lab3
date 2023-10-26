@@ -19,13 +19,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="loggaQuiz1.png">
+    <Resource Include="Images\loggaQuiz1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="questionmark.png">
+    <Resource Include="Images\questionmark.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="quizLogga2.png">
+    <Resource Include="Images\quizLogga2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

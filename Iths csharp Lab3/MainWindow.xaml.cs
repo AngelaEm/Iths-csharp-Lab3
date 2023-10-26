@@ -27,6 +27,11 @@ namespace Iths_csharp_Lab3
         public MainWindow()
         {
             InitializeComponent();
+
+            Quiz allQuestions = new Quiz();
+            allQuestions.Title = "AllQuestions";
+            allQuestions.GenerateQuestions();
+            AllQuizzes.ListWithAllQuizzes.Add(allQuestions);
             
         }
 

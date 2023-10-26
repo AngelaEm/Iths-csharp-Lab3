@@ -28,7 +28,9 @@ namespace Iths_csharp_Lab3
         public ChooseQuizWindow()
         {
             InitializeComponent();
-            AllQuizzes.LoadQuizzesIntoComboBox(ChooseQuizCB);
+           
+            ChooseQuizCB.ItemsSource = AllQuizzes.ListWithAllQuizzes;
+            
         }
 
 
@@ -43,7 +45,6 @@ namespace Iths_csharp_Lab3
             if (AllQuizzes.SelectedCategories != null)
             {
                 AllQuizzes.SelectedCategories.Clear();
-
             }
 
             if (ProgrammingCB.IsChecked == true)
@@ -115,26 +116,13 @@ namespace Iths_csharp_Lab3
         /// <param name="e">Event arguments</param>
         private void ChooseQuizCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ChooseQuizCB.SelectedItem != null)
+            if (ChooseQuizCB.SelectedItem is Quiz selectedQuiz)
             {
-                string selectedTitle = ChooseQuizCB.SelectedItem.ToString();
+            
+                this.DataContext = selectedQuiz;
+                AllQuizzes.SelectedQuiz = selectedQuiz;
 
-                Quiz selectedQuiz = null;
-
-                foreach (var quiz in AllQuizzes.ListWithAllQuizzes)
-                {
-                    if (quiz.Title == selectedTitle)
-                    {
-                        selectedQuiz = quiz;
-                        break;
-                    }
-                }
-
-                if (selectedQuiz != null)
-                {
-                    AllQuizzes.SelectedQuiz = selectedQuiz;
-                }
-            }
+            }           
         }
 
 

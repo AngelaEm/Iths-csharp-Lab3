@@ -44,7 +44,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="Quizzy Trivia" Grid.Column="2" Grid.Row="1" FontSize="32" Width="220" Height="40" Foreground="Cyan" VerticalAlignment="Center" Margin="5"/>
-        <Image x:Name="BildLogga" Source="quizLogga2.png" Width="350" Height="110" Grid.Column="2" Grid.Row="2" Grid.RowSpan="2"  VerticalAlignment="Center"/>
+        <Image x:Name="BildLogga" Source="\Images\quizLogga2.png" Width="350" Height="110" Grid.Column="2" Grid.Row="2" Grid.RowSpan="2"  VerticalAlignment="Center"/>
 
         <Label Content="Name:" Grid.Column="1" Grid.Row="5"/>
         <TextBox x:Name="QuizNameTB" Text="Enter quizname here" Grid.Column="2" Grid.Row="5" FontSize="12" Width="320" Margin="3" AcceptsReturn="true" TextWrapping="Wrap"

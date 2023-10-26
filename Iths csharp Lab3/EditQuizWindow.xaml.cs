@@ -28,7 +28,10 @@ namespace Iths_csharp_Lab3
         public EditQuizWindow()
         {
             InitializeComponent();
-            AllQuizzes.LoadQuizzesIntoComboBox(EditQuizCB);
+            this.DataContext = currentQuiz;
+            this.DataContext = currentQuestion;
+            EditQuizCB.ItemsSource = AllQuizzes.ListWithAllQuizzes;                   
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -40,56 +43,43 @@ namespace Iths_csharp_Lab3
 
         private void EditQuizCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
 
-            if (EditQuizCB.SelectedItem != null)
+
+            if (EditQuizCB.SelectedItem is Quiz selectedQuiz)
             {
-                string selectedTitle = EditQuizCB.SelectedItem.ToString();
 
-                foreach (var quizz in AllQuizzes.ListWithAllQuizzes)
-                {
-                    if (quizz.Title == selectedTitle)
-                    {
-                        currentQuiz = quizz;
-                        break;
-                    }
-                }
+                currentQuiz = selectedQuiz;
+                this.DataContext = currentQuiz;
 
-                if (currentQuiz != null)
-                {
-                    AllQuizzes.SelectedQuiz = currentQuiz;
-                }
             }
 
-            AllQuizzes.LoadQuestionsIntoListBox(QuestionLB);
-            
+            QuestionLB.ItemsSource = currentQuiz.Questions;
 
         }
 
         private void QuestionLB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (QuestionLB.SelectedItem != null)
+            if (QuestionLB.SelectedItem is Question selectedQuestion)
             {
-                string selectedStatement = QuestionLB.SelectedItem.ToString();
-
-                foreach (var question in currentQuiz.Questions)
-                {
-                    if (question.Statement == selectedStatement)
-                    {
-                        currentQuestion = question;
-                        break;
-                    }
-                }               
+               
+                currentQuestion = selectedQuestion;
+                this.DataContext = currentQuestion;
             }
             ChangeQuestionTB.Text = currentQuestion.Statement;
             ChangeAnswer1TB.Text = currentQuestion.Answers[0];
             ChangeAnswer2TB.Text = currentQuestion.Answers[1];
             ChangeAnswer3TB.Text = currentQuestion.Answers[2];
 
-            if (true)
-            {
+           
+        }
 
-            }
+        private void Submit_Click(object sender, RoutedEventArgs e)
+        {
+            
+            MessageBox.Show(currentQuestion.Statement);
+            MessageBox.Show(currentQuestion.Answers[0]);
+            MessageBox.Show(currentQuestion.Answers[1]);
+            MessageBox.Show(currentQuestion.Answers[2]);
         }
     }
 }
