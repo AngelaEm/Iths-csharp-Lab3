@@ -61,7 +61,7 @@ namespace Iths_csharp_Lab3
                 return;
             }
 
-            if (currentQuiz.Questions.Count() == 0)
+            if (currentQuiz.Questions.Count == 0)
             {
                 MessageBox.Show($"Please add at least one question!");
                 return;

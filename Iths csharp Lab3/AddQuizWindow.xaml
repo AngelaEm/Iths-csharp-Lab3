@@ -53,7 +53,7 @@
         <TextBox x:Name="CategoryNameTB" Text="Enter category here" Grid.Column="2" Grid.Row="7" FontSize="12" Width="320" Margin ="3" AcceptsReturn="true" TextWrapping="Wrap"
                  GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
         <Label Content="Image URL:" Grid.Column="1" Grid.Row="9"/>
-        <TextBox x:Name="ImageTB" Text="questionmark.png" Grid.Column="2" Grid.Row="9" FontSize="12" Width="320" Margin ="3" AcceptsReturn="false" TextWrapping="NoWrap"
+        <TextBox x:Name="ImageTB" Text="\Images\questionmark.png" Grid.Column="2" Grid.Row="9" FontSize="12" Width="320" Margin ="3" AcceptsReturn="false" TextWrapping="NoWrap"
                  GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
         <Label Content="Question:" Grid.Column="1" Grid.Row="11"/>
         <TextBox x:Name="AddQuestionTB" Text="Enter question here" Grid.Column="2" Grid.Row="11" FontSize="12" Width="320" Margin="3" AcceptsReturn="true" TextWrapping="Wrap"

@@ -76,10 +76,28 @@ namespace Iths_csharp_Lab3
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
             
-            MessageBox.Show(currentQuestion.Statement);
-            MessageBox.Show(currentQuestion.Answers[0]);
-            MessageBox.Show(currentQuestion.Answers[1]);
-            MessageBox.Show(currentQuestion.Answers[2]);
+           
+            int correct = -1;
+         
+
+            if (Answer1RB.IsChecked == true)
+            {
+                correct = 0;
+            }
+            else if (Answer2RB.IsChecked == true)
+            {
+                correct = 1;
+            }
+            else if (Answer3RB.IsChecked == true)
+            {
+                correct = 2;
+            }
+
+            if (correct == -1)
+            {
+                MessageBox.Show("Please choose correct answer!");
+                return;
+            }
         }
     }
 }

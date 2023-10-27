@@ -14,7 +14,7 @@ namespace Iths_csharp_Lab3.Models
         public string Statement { get; set; }     
         public int CorrectAnswer { get; }
         public string[] Answers { get; set; }
-        public string ImagePath { get; set; } = "questionmark.png";
+        public string ImagePath { get; set; } = "\\Images\\questionmark.png";
 
         public Question(string category, string statement, int correctAnswer, params string[] answers)
         {     
@@ -32,6 +32,7 @@ namespace Iths_csharp_Lab3.Models
             Answers = answers;
             ImagePath = imagePath;
         }
+
     }
 }
 

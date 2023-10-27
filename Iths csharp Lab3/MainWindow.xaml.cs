@@ -23,15 +23,16 @@ namespace Iths_csharp_Lab3
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {    
+    {
+
+        Quiz newQuiz = new Quiz();
+
         public MainWindow()
         {
             InitializeComponent();
-
-            Quiz allQuestions = new Quiz();
-            allQuestions.Title = "AllQuestions";
-            allQuestions.GenerateQuestions();
-            AllQuizzes.ListWithAllQuizzes.Add(allQuestions);
+            
+            newQuiz.GenerateFolderAndTextFile();
+           
             
         }
 
@@ -70,5 +71,7 @@ namespace Iths_csharp_Lab3
             editQuizWindow.Show();
             this.Close();
         }
+
+        
     }
 }

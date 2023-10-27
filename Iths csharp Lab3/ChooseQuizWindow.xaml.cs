@@ -23,7 +23,12 @@ namespace Iths_csharp_Lab3
     /// </summary>
     public partial class ChooseQuizWindow : Window
     {
-      
+        private List<string> selectedCategories = new List<string>();
+
+        private List<Question> currentList = new List<Question>();
+
+        private Quiz newQuiz = new Quiz();
+
 
         public ChooseQuizWindow()
         {
@@ -42,30 +47,30 @@ namespace Iths_csharp_Lab3
         /// <param name="e">Event arguments</param>
         private void CategoryChecked(object sender, RoutedEventArgs e)
         {
-            if (AllQuizzes.SelectedCategories != null)
+            if (selectedCategories != null)
             {
-                AllQuizzes.SelectedCategories.Clear();
+                selectedCategories.Clear();
             }
 
             if (ProgrammingCB.IsChecked == true)
             {
-                AllQuizzes.SelectedCategories.Add("Programming");
+                selectedCategories.Add("Programming");
             }
             if (MusicCB.IsChecked == true)
             {
-                AllQuizzes.SelectedCategories.Add("Music");
+                selectedCategories.Add("Music");
             }
             if (NatureCB.IsChecked == true)
             {
-                AllQuizzes.SelectedCategories.Add("Nature");
+                selectedCategories.Add("Nature");
             }
             if (MathematicsCB.IsChecked == true)
             {
-                AllQuizzes.SelectedCategories.Add("Mathematics");
+                selectedCategories.Add("Mathematics");
             }
             if (MixedQuestionsCB.IsChecked == true)
             {
-                AllQuizzes.SelectedCategories.Add("Mixed Questions");
+                selectedCategories.Add("Mixed Questions");
             }
 
         }
@@ -79,33 +84,29 @@ namespace Iths_csharp_Lab3
         /// <param name="e">Event arguments</param>
         private void CategoryUnchecked(object sender, RoutedEventArgs e)
         {
-            if (AllQuizzes.SelectedCategories != null)
+            if (selectedCategories != null)
             {
                 if (ProgrammingCB.IsChecked == false)
                 {
-                    AllQuizzes.SelectedCategories.Remove("Programming");
+                    selectedCategories.Remove("Programming");
                 }
                 if (MusicCB.IsChecked == false)
                 {
-                    AllQuizzes.SelectedCategories.Remove("Music");
+                    selectedCategories.Remove("Music");
                 }
                 if (NatureCB.IsChecked == false)
                 {
-                    AllQuizzes.SelectedCategories.Remove("Nature");
+                    selectedCategories.Remove("Nature");
                 }
                 if (MathematicsCB.IsChecked == false)
                 {
-                    AllQuizzes.SelectedCategories.Remove("Mathematics");
+                    selectedCategories.Remove("Mathematics");
                 }
                 if (MixedQuestionsCB.IsChecked == false)
                 {
-                    AllQuizzes.SelectedCategories.Remove("Mixed Questions");
+                    selectedCategories.Remove("Mixed Questions");
                 }
-
             }
-
-
-
         }
 
 
@@ -118,10 +119,8 @@ namespace Iths_csharp_Lab3
         {
             if (ChooseQuizCB.SelectedItem is Quiz selectedQuiz)
             {
-            
-                this.DataContext = selectedQuiz;
                 AllQuizzes.SelectedQuiz = selectedQuiz;
-
+              
             }           
         }
 
@@ -134,16 +133,50 @@ namespace Iths_csharp_Lab3
         /// <param name="e">Event arguments</param>
         private void GoToGameWindow_Click(object sender, RoutedEventArgs e)
         {
+            if (AllQuizzes.SelectedQuiz != null && selectedCategories != null)
+            {
+                MessageBox.Show("Please choose quiz or categories!");
+                selectedCategories.Clear();
+
+                return;
+            }
             GameWindow gameWindow = new GameWindow();
 
+            newQuiz.GenerateQuestions();
+            
             if (AllQuizzes.SelectedQuiz != null)
             {
                 gameWindow.SelectedQuiz = AllQuizzes.SelectedQuiz;
+                
             }
+
             else
             {
-                gameWindow.SelectedCategories = AllQuizzes.SelectedCategories;
+               
+                if (selectedCategories.Contains("Mixed Questions"))
+                {
+                    foreach (var question in newQuiz.Questions)
+                    {
+                        currentList.Add(question);
+                    }
+
+                }
+                else
+                {
+                    foreach (var category in selectedCategories)
+                    {
+                        foreach (var question in newQuiz.Questions)
+                        {
+                            if (question.Category == category)
+                            {
+                                currentList.Add(question);
+                            }
+                        }
+                    }
+                }
             }
+
+            gameWindow.currentList = currentList;
 
             gameWindow.Show();
             this.Close();

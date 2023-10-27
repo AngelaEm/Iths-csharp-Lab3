@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Iths_csharp_Lab3"
         mc:Ignorable="d" FontSize="16" FontWeight="Bold" Background="LightCoral" FontFamily="Comic Sans MS" Foreground="Cyan"
-        Title="ChooseQuizWindow" Height="450" Width="600">
+        Title="ChooseQuizWindow" Height="500" Width="600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -63,9 +63,9 @@
             
         </StackPanel>
 
-        <Label Content="Choose Quiz" FontWeight="Bold" Background="Cyan" Foreground="LightCoral" Grid.Column="5" Grid.Row="5" />
-        <ComboBox Name="ChooseQuizCB" Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="6"  
-          VerticalAlignment="Center" Background="cyan" Foreground="LightCoral" SelectionChanged="ChooseQuizCB_SelectionChanged">
+        <Label Content="Choose Quiz" FontWeight="Bold" Background="Cyan" Foreground="LightCoral" Grid.Column="5" Grid.Row="5" Margin="0,0,0,10" />
+        <ComboBox Name="ChooseQuizCB" Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="6" Height="30" Grid.RowSpan="3" Width="180"
+          HorizontalAlignment="Left" Background="cyan" Foreground="LightCoral" SelectionChanged="ChooseQuizCB_SelectionChanged">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Title}"/>
@@ -75,10 +75,10 @@
 
 
 
-        <Button x:Name="GoToGameWindow" Content="Play Game" Grid.Column="5" Grid.Row="9" Grid.ColumnSpan="2" 
+        <Button x:Name="GoToGameWindow" Content="Play Game" Grid.Column="5" Grid.Row="18"  Width="120" Height="40"
                 VerticalAlignment="Center" Background="cyan" Foreground="LightCoral" Click="GoToGameWindow_Click"/>
 
-        <Button Grid.Column="2" Grid.Row="18" Width="120" Height="30" Grid.RowSpan="4" Grid.ColumnSpan="4" Content="Back to main" 
+        <Button x:Name="BackToMain" Content="Back to main" Grid.Column="2" Grid.Row="18" Width="120" Height="40"    
                 VerticalAlignment="Center" Background="cyan" Foreground="LightCoral" Click="Button_Click"/>
 
     </Grid>

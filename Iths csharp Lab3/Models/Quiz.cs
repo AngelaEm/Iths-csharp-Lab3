@@ -15,16 +15,19 @@ namespace Iths_csharp_Lab3.Models
 {
     public class Quiz
     {
-        private List<Question> _questions;
+        
 
-        private string _title = string.Empty;
-        public IEnumerable<Question> Questions => _questions;
-        public string Title { get; set; }     
+        //private string _title = string.Empty;
+        //public IEnumerable<Question> Questions => _questions;
+        public string Title { get; set; }   
+        
+        public List<Question> Questions { get; set; }
 
         public Quiz()
         {
-            _questions = new List<Question>();          
+            Questions = new List<Question>();          
         }
+
 
         /// <summary>
         /// Get a random question 
@@ -33,9 +36,9 @@ namespace Iths_csharp_Lab3.Models
         public Question GetRandomQuestion()
         {
             Random random = new Random();
-            int randomIndex = random.Next(0, _questions.Count);
+            int randomIndex = random.Next(0, Questions.Count);
 
-            return _questions[randomIndex];
+            return Questions[randomIndex];
             
         }
 
@@ -49,7 +52,7 @@ namespace Iths_csharp_Lab3.Models
         public void AddQuestion(string category, string statement, int correctAnswer, params string[] answers)
         {
             Question newQuestion = new Question(category, statement, correctAnswer, answers);
-            _questions.Add(newQuestion);
+            Questions.Add(newQuestion);
             
         }
 
@@ -64,7 +67,7 @@ namespace Iths_csharp_Lab3.Models
         public void AddQuestion(string category, string statement, int correctAnswer, string imagePath, params string[] answers)
         {
             Question newQuestion = new Question(category, statement, correctAnswer, imagePath, answers);
-            _questions.Add(newQuestion);
+            Questions.Add(newQuestion);
 
         }
 
@@ -74,7 +77,7 @@ namespace Iths_csharp_Lab3.Models
         /// <param name="question">Question</param>
         public void AddToQuiz(Question question)
         {
-            _questions.Add(question);
+            Questions.Add(question);
         }
 
        
@@ -84,21 +87,27 @@ namespace Iths_csharp_Lab3.Models
         /// <param name="question">Question</param>
         public void RemoveQuestion(Question question)
         {
-            _questions.Remove(question);
+            Questions.Remove(question);
         }
-        
-        /// <summary>
-        /// Generate Folder and textfile with questions in json
-        /// </summary>
+
         public void GenerateFolderAndTextFile()
         {
-            GenerateQuestions();
+            if (Questions.Count == 0)
+            {
+                GenerateQuestions();
+            }
+
+            if(AllQuizzes.ListWithAllQuizzes.Count == 0)
+            {
+                GenerateMegaQuiz();
+            }
+           
 
             string folderName = "MyQuiz";
             string localFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             string folderPath = Path.Combine(localFolderPath, folderName);
-            
-            var json = JsonConvert.SerializeObject(_questions, Formatting.Indented);         
+
+            var json = JsonConvert.SerializeObject(Questions, Formatting.Indented);
 
             try
             {
@@ -115,7 +124,45 @@ namespace Iths_csharp_Lab3.Models
                 MessageBox.Show(e.Message);
             }
         }
-              
+
+        
+
+        //public List<Question> LoadQuestions()
+        //{
+        //    string folderName = "MyQuiz";
+        //    string fileName = "MegaQuizWithAllQuestions.json";
+        //    string localFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        //    string folderPath = Path.Combine(localFolderPath, folderName);
+        //    string filePath = Path.Combine(folderPath, fileName);
+
+        //    if (File.Exists(filePath))
+        //    {
+        //        string json = File.ReadAllText(filePath);
+        //        Quiz loadedQuiz = JsonConvert.DeserializeObject<Quiz>(json);
+        //        return loadedQuiz.Questions;
+        //    }
+        //    return new List<Question>();
+        //}
+
+        //public void LoadQuiz()
+        //{
+        //    string folderName = "MyQuiz";
+        //    string fileName = "MegaQuizWithAllQuestions.json";
+        //    string localFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        //    string folderPath = Path.Combine(localFolderPath, folderName);
+        //    string filePath = Path.Combine(folderPath, fileName);
+
+        //    if (File.Exists(filePath))
+        //    {
+        //        string json = File.ReadAllText(filePath);
+        //        Quiz loadedQuiz = JsonConvert.DeserializeObject<Quiz>(json);
+        //        this.Questions = loadedQuiz.Questions;
+
+        //    }
+            
+        //}
+
+       
         /// <summary>
         /// Generate questions and add question to list
         /// </summary>
@@ -163,6 +210,12 @@ namespace Iths_csharp_Lab3.Models
 
         }
 
-        
+        public void GenerateMegaQuiz()
+        {
+            Quiz megaQuiz = new Quiz();
+            megaQuiz.Title = "Quizzy Trivia MegaQuiz";
+            megaQuiz.GenerateQuestions();
+            AllQuizzes.ListWithAllQuizzes.Add(megaQuiz);
+        }
     }
 }
