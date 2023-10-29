@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Iths_csharp_Lab3"
-        mc:Ignorable="d" FontSize="16" FontWeight="Bold" Background="LightCoral" FontFamily="Comic Sans MS" Foreground="Cyan"
-        Title="EditQuizWindow" Height="600" Width="900">
+        mc:Ignorable="d" FontSize="16" FontWeight="Bold" Background="Teal" FontFamily="Lato"
+        Title="EditQuizWindow" Height="700" Width="900">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -20,33 +20,32 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="1"/>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="10"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="10"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="10"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="10"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="10"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="10"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Quizzy Trivia" Grid.Column="3" Grid.Row="1" FontSize="32" Width="220" Height="40" Foreground="Cyan" VerticalAlignment="Center"/>
-        <Image x:Name="BildLogga" Source="\Images\quizLogga2.png" Width="250" Height="110" Grid.Column="3" Grid.Row="2" Grid.RowSpan="2"  VerticalAlignment="Center"/>
+        <Image x:Name="BildLogga" Source="\Images\quizzyLogga.png" Width="250" Height="150" Grid.Column="3" Grid.Row="1" VerticalAlignment="Center"/>
 
-        <Label Content="Choose Quiz" FontWeight="Bold" Background="Cyan" Foreground="LightCoral" Grid.Column="1" Grid.Row="5"  Height="30" Width="270"/>
-        <ComboBox Name="EditQuizCB" Text="Choose Quiz" Grid.Column="1" Grid.Row="7" Height="40" Width="270" 
-                  VerticalAlignment="Center" Background="cyan" Foreground="LightCoral" SelectionChanged="EditQuizCB_SelectionChanged">
+        <Label Content="Choose Quiz" FontWeight="Bold" Background="Cyan" Grid.Column="1" Grid.Row="3"  Height="30" Width="270"/>
+        <ComboBox Name="EditQuizCB" Text="Choose Quiz" Grid.Column="1" Grid.Row="5"  Height="40" Width="270" 
+                  Background="cyan" SelectionChanged="EditQuizCB_SelectionChanged">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Title}"/>
@@ -54,9 +53,12 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <Label Content="Choose Question" FontWeight="Bold" Background="Cyan" Foreground="LightCoral" Grid.Column="3" Grid.Row="5" Width="270"/>
-        <ListBox x:Name="QuestionLB" Grid.Column="3" Grid.Row="5" Grid.RowSpan="10" SelectionChanged="QuestionLB_SelectionChanged" 
-                 Width="270" Height="250">
+        <Image Source="\Images\questionmark.png" Grid.Column="1" Grid.Row="8" Grid.RowSpan="5" Height="150"/>
+
+
+        <Label Content="Choose Question" FontWeight="Bold" Background="Cyan" Grid.Column="3" Grid.Row="3" Width="270"/>
+        <ListBox x:Name="QuestionLB" Grid.Column="3" Grid.Row="5" Grid.RowSpan="2" SelectionChanged="QuestionLB_SelectionChanged" 
+                 Width="270" Height="150">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Statement}" FontSize="10"/>
@@ -64,11 +66,18 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Label Content="Edit Question" FontWeight="Bold" Background="Cyan" Foreground="LightCoral" Grid.Column="5" Grid.Row="5" Width="270"/>
-        <TextBox Text="{Binding Statement}" x:Name="ChangeQuestionTB" Grid.Column="5" Grid.Row="7"  FontSize="12" Width="270" Height="80"
+        <Button x:Name="BackToMain" Content="Back to main" Height="40" FontWeight="Bold" Grid.Column="3" Grid.Row="10"
+                Background="Cyan" BorderBrush="Coral" BorderThickness="2" Click="Button_Click" />
+        <Button x:Name="GoToChooseQuiz" Content="Play Quiz" Height="40" FontWeight="Bold" Grid.Column="3" Grid.Row="8"
+                Background="Cyan" BorderBrush="Coral" BorderThickness="2" Click="GoToChooseQuiz_Click" />
+
+
+
+        <Label Content="Edit Question" FontWeight="Bold" Background="Cyan" Grid.Column="5" Grid.Row="3" Width="270"/>
+        <TextBox Text="{Binding Statement}" x:Name="ChangeQuestionTB" Grid.Column="5" Grid.Row="5"  FontSize="12" Width="270" Height="80"
                  AcceptsReturn="true" TextWrapping="Wrap"/>
       
-        <Grid Grid.Column="5" Grid.Row="10" Grid.RowSpan="2">
+        <Grid Grid.Column="5" Grid.Row="6" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="50"/>
@@ -84,11 +93,11 @@
                 <RowDefinition Height="10"/>
             </Grid.RowDefinitions>
 
-            <TextBox x:Name="ChangeAnswer1TB" Text="{Binding Answers[0]}" FontSize="12" Width="200" Height="30" HorizontalAlignment="Left"
+            <TextBox x:Name="ChangeAnswer1TB" Text="{Binding Answers[0]}" FontSize="12" Width="210" Height="30" 
                      AcceptsReturn="true" TextWrapping="Wrap" Grid.Column="0" Grid.Row="1" />
-            <TextBox x:Name="ChangeAnswer2TB" Text="{Binding Answers[1]}" FontSize="12" Width="200" Height="30" HorizontalAlignment="Left"
+            <TextBox x:Name="ChangeAnswer2TB" Text="{Binding Answers[1]}" FontSize="12" Width="210" Height="30" 
                      AcceptsReturn="true" TextWrapping="Wrap" Grid.Column="0" Grid.Row="3"/>
-            <TextBox x:Name="ChangeAnswer3TB" Text="{Binding Answers[2]}" FontSize="12" Width="200" Height="30" HorizontalAlignment="Left"
+            <TextBox x:Name="ChangeAnswer3TB" Text="{Binding Answers[2]}" FontSize="12" Width="210" Height="30" 
                      AcceptsReturn="true" TextWrapping="Wrap" Grid.Column="0" Grid.Row="5"/>
 
             <RadioButton x:Name="Answer1RB" Grid.Column="1" Grid.Row="1" Width="20" Height="20" 
@@ -99,13 +108,15 @@
                           VerticalAlignment="Center" HorizontalAlignment="Left"/>
         </Grid>
 
-        <StackPanel Grid.Column="1" Grid.Row="10">
-            <Button  Width="150" Height="40" Content="Back to main" Click="Button_Click" Margin="10"/>
-            <Button  Width="150" Height="40" Content="Submit" Click="Submit_Click" Margin="10"/>
+        <Button Content="Save changes" FontWeight="Bold" Background="Cyan" BorderBrush="Coral" BorderThickness="2" 
+                Grid.Column="5" Grid.Row="8" Height="40" Click="Submit_Click"/>
+        <Button Content="Remove Question" FontWeight="Bold" Background="Cyan" BorderBrush="Coral" BorderThickness="2"
+                Grid.Column="5" Grid.Row="10" Height="40"/>
+        <!--<Button Content="Add new Question" FontWeight="Bold" Background="Cyan" BorderBrush="Coral" BorderThickness="2"
+                Grid.Column="3" Grid.Row="10" Width="270" Height="40"/>-->
 
-        </StackPanel>
 
-        
-   
+
+
     </Grid>
 </Window>

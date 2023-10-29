@@ -58,10 +58,7 @@ namespace Iths_csharp_Lab3
             {
                 HandleQuizzes.ListWithCurrentCategories.Add("Mathematics");
             }
-            //if (MixedQuestionsCB.IsChecked == true)
-            //{
-            //    HandleQuizzes.ListWithCurrentCategories.Add("Mixed Questions");
-            //}
+            
         }
 
 
@@ -91,10 +88,7 @@ namespace Iths_csharp_Lab3
                 {
                     HandleQuizzes.ListWithCurrentCategories.Remove("Mathematics");
                 }
-                //if (MixedQuestionsCB.IsChecked == false)
-                //{
-                //    HandleQuizzes.ListWithCurrentCategories.Remove("Mixed Questions");
-                //}
+               
             }
         }
 
@@ -121,7 +115,7 @@ namespace Iths_csharp_Lab3
         /// <param name="e">Event arguments</param>
         private void GoToGameWindow_Click(object sender, RoutedEventArgs e)
         {
-            if (ChooseQuizCB.SelectedItem != null && HandleQuizzes.ListWithCurrentCategories.Count != 0)
+            if ((ChooseQuizCB.SelectedItem != null && HandleQuizzes.ListWithCurrentCategories.Count != 0) || (ChooseQuizCB.SelectedItem == null && HandleQuizzes.ListWithCurrentCategories.Count == 0))
             {
                 MessageBox.Show("Please choose quiz or categories!");
                 HandleQuizzes.ListWithCurrentCategories.Clear();
@@ -130,8 +124,7 @@ namespace Iths_csharp_Lab3
                 MusicCB.IsChecked = false;
                 NatureCB.IsChecked = false;
                 MathematicsCB .IsChecked = false;
-                //MixedQuestionsCB.IsChecked = false;
-
+                
                 return;
             }
 

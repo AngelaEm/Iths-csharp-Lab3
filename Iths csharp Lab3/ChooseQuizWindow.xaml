@@ -4,16 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Iths_csharp_Lab3"
-        mc:Ignorable="d" FontSize="16" FontWeight="Bold" Background="LightCoral" FontFamily="Comic Sans MS" Foreground="Cyan"
-        Title="ChooseQuizWindow" Height="500" Width="600">
+        mc:Ignorable="d" FontSize="16" FontWeight="Bold" Background="Teal" FontFamily="Lato" Foreground="Cyan"
+        Title="ChooseQuizWindow" Height="600" Width="600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
@@ -26,16 +22,9 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="10"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="10"/>
             <RowDefinition Height="auto"/>
@@ -45,27 +34,28 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Quizzy Trivia" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="4"  FontSize="32" Width="220" Height="40"   Foreground="Cyan" />
-        <Image x:Name="BildLogga" Source="\Images\quizLogga2.png" Width="350" Height="110" Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="3"/>
+        <!--<TextBlock Text="Quizzy Trivia" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="4"  FontSize="32" Width="220" Height="40"   Foreground="Cyan" />-->
+        <Image x:Name="BildLogga" Source="\Images\quizzyLogga.png" Width="150" Height="150" Grid.Column="2" Grid.Row="1"/>
 
+        <Label FontWeight="Bold" Background="cyan" Grid.Column="2" Grid.Row="3" FontSize="16" Width="330" BorderBrush="Coral" BorderThickness="3">
+        <TextBlock>
+        Choose from one or more categories,
+        <LineBreak/>
+        or select a ready-made quiz from the list
+        </TextBlock>
+        </Label>
 
-        <StackPanel Grid.Column="2" Grid.ColumnSpan="2"  Grid.Row="5" Grid.RowSpan="5" Background="Cyan" >
-            <Label Content="Quiz categories" FontWeight="Bold" Foreground="LightCoral"/>
-            
-            <StackPanel Margin="10">
-                <CheckBox x:Name="ProgrammingCB" Content="Programming" FontSize="12" Foreground="LightCoral" Checked="CategoryChecked" Unchecked="CategoryUnchecked"/>
-                <CheckBox x:Name="MusicCB" Content="Music" FontSize="12" Foreground="LightCoral" Checked="CategoryChecked" Unchecked="CategoryUnchecked"/>
-                <CheckBox x:Name="NatureCB" Content="Nature" FontSize="12" Foreground="LightCoral" Checked="CategoryChecked" Unchecked="CategoryUnchecked"/>
-                <CheckBox x:Name="MathematicsCB" Content="Mathematics" FontSize="12" Foreground="LightCoral" Checked="CategoryChecked" Unchecked="CategoryUnchecked"/>
-                <!--<CheckBox x:Name="MixedQuestionsCB" Content="Mixed Questions" FontSize="12" Foreground="LightCoral" Checked="CategoryChecked" Unchecked="CategoryUnchecked"/>-->
-            </StackPanel>
-            
-            
+        <StackPanel Grid.Column="2"  Grid.Row="5" Background="Cyan" Width="330">
+            <CheckBox x:Name="ProgrammingCB" Content="Programming" Checked="CategoryChecked" Unchecked="CategoryUnchecked"/>
+            <CheckBox x:Name="MusicCB" Content="Music" Checked="CategoryChecked" Unchecked="CategoryUnchecked"/>
+            <CheckBox x:Name="NatureCB" Content="Nature" Checked="CategoryChecked" Unchecked="CategoryUnchecked"/>
+            <CheckBox x:Name="MathematicsCB" Content="Mathematics" Checked="CategoryChecked" Unchecked="CategoryUnchecked"/>
+            <!--<CheckBox x:Name="MixedQuestionsCB" Content="Mixed Questions" FontSize="12" Foreground="LightCoral" Checked="CategoryChecked" Unchecked="CategoryUnchecked"/>-->
         </StackPanel>
 
-        <Label Content="Choose Quiz" FontWeight="Bold" Background="Cyan" Foreground="LightCoral" Grid.Column="5" Grid.Row="5" Margin="0,0,0,10" />
-        <ComboBox Name="ChooseQuizCB" Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="6" Height="30" Grid.RowSpan="3" Width="180"
-          HorizontalAlignment="Left" Background="cyan" Foreground="LightCoral" SelectionChanged="ChooseQuizCB_SelectionChanged">
+        <!--<Label Content="Choose Quiz" FontWeight="Bold" Background="Cyan" Foreground="LightCoral" Grid.Column="5" Grid.Row="5" Margin="0,0,0,10" />-->
+        <ComboBox Name="ChooseQuizCB" Grid.Column="2" Grid.Row="7" Height="30" Grid.RowSpan="3" Width="330"
+          HorizontalAlignment="Left" Background="cyan" SelectionChanged="ChooseQuizCB_SelectionChanged">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Title}"/>
@@ -75,11 +65,11 @@
 
 
 
-        <Button x:Name="GoToGameWindow" Content="Play Game" Grid.Column="5" Grid.Row="18"  Width="120" Height="40"
-                VerticalAlignment="Center" Background="cyan" Foreground="LightCoral" Click="GoToGameWindow_Click"/>
+        <Button x:Name="GoToGameWindow" Content="Start Quiz" Grid.Column="2" Grid.Row="11"  Width="120" Height="40"
+                VerticalAlignment="Center" Background="cyan" BorderBrush="Coral" BorderThickness="3" Click="GoToGameWindow_Click"/>
 
-        <Button x:Name="BackToMain" Content="Back to main" Grid.Column="2" Grid.Row="18" Width="120" Height="40"    
-                VerticalAlignment="Center" Background="cyan" Foreground="LightCoral" Click="Button_Click"/>
+        <Button x:Name="BackToMain" Content="Back to main" Grid.Column="2" Grid.Row="13" Width="120" Height="40"    
+                VerticalAlignment="Center" Background="cyan" BorderBrush="Coral" BorderThickness="3" Click="Button_Click"/>
 
     </Grid>
 </Window>

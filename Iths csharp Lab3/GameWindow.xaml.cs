@@ -42,8 +42,10 @@ namespace Iths_csharp_Lab3
             MakeQuizBasedOnUserChoice();
 
             LoadNextQuestion();
-            
-            
+
+            this.DataContext = CurrentQuestion;
+
+
         }
             
 
@@ -109,17 +111,14 @@ namespace Iths_csharp_Lab3
             {
 
                 CurrentQuestion = GetRandomQuestionFromList(HandleQuizzes.ListWithCurrentQuestions);
+                
 
                 if (CurrentQuestion.ImagePath != null)
                 {
                     SetQuestionImage(CurrentQuestion.ImagePath);
                 }
 
-                QuestionTB.Text = CurrentQuestion.Statement;
-
-                Answer1Button.Content = CurrentQuestion.Answers[0];
-                Answer2Button.Content = CurrentQuestion.Answers[1];
-                Answer3Button.Content = CurrentQuestion.Answers[2];
+                this.DataContext = CurrentQuestion;
 
                 RemoveQuestionFromList(CurrentQuestion);
             }
@@ -179,14 +178,7 @@ namespace Iths_csharp_Lab3
         }
 
 
-        private void BackToMainWindow_Click(object sender, RoutedEventArgs e)
-        {
-            HandleQuizzes.ListWithCurrentQuestions.Clear();
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Close();
-
-        }     
+         
         
         private void MakeQuizBasedOnUserChoice()
         {
@@ -228,6 +220,23 @@ namespace Iths_csharp_Lab3
             questionsInQuiz = HandleQuizzes.ListWithCurrentQuestions.Count;
 
             SetQuestionImage("\\Images\\questionmark.png");
+
+        }
+
+        private void ChooseQuizWindow_Click(object sender, RoutedEventArgs e)
+        {
+            HandleQuizzes.ListWithCurrentQuestions.Clear();
+            ChooseQuizWindow chooseQuizWindow = new ChooseQuizWindow();
+            chooseQuizWindow.Show();
+            this.Close();
+        }
+
+        private void BackToMainWindow_Click(object sender, RoutedEventArgs e)
+        {
+            HandleQuizzes.ListWithCurrentQuestions.Clear();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
 
         }
     }

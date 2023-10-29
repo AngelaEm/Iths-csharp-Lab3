@@ -13,6 +13,8 @@
     <None Remove="Images\ImageGKlav.png" />
     <None Remove="Images\ImagePi.png" />
     <None Remove="Images\ImageProgramming.png" />
+    <None Remove="Images\questionmark.png" />
+    <None Remove="Images\quizzyLogga.png" />
     <None Remove="loggaQuiz1.png" />
     <None Remove="questionmark.png" />
     <None Remove="quizLogga2.png" />
@@ -35,13 +37,10 @@
     <Resource Include="Images\ImageProgramming.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\loggaQuiz1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="Images\questionmark.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\quizLogga2.png">
+    <Resource Include="Images\quizzyLogga.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

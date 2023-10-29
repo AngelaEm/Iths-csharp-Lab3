@@ -30,7 +30,7 @@ namespace Iths_csharp_Lab3
             InitializeComponent();
             this.DataContext = currentQuiz;
             this.DataContext = currentQuestion;
-            EditQuizCB.ItemsSource = AllQuizzes.ListWithAllQuizzes;
+            EditQuizCB.ItemsSource = HandleQuizzes.ListWithAllQuizzes;
 
         }
 
@@ -65,17 +65,13 @@ namespace Iths_csharp_Lab3
                 currentQuestion = selectedQuestion;
                 this.DataContext = currentQuestion;
             }
-            ChangeQuestionTB.Text = currentQuestion.Statement;
-            ChangeAnswer1TB.Text = currentQuestion.Answers[0];
-            ChangeAnswer2TB.Text = currentQuestion.Answers[1];
-            ChangeAnswer3TB.Text = currentQuestion.Answers[2];
 
+            SetFields();
 
         }
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
-
 
             int correct = -1;
 
@@ -83,6 +79,8 @@ namespace Iths_csharp_Lab3
             if (Answer1RB.IsChecked == true)
             {
                 correct = 0;
+               
+               
             }
             else if (Answer2RB.IsChecked == true)
             {
@@ -93,11 +91,57 @@ namespace Iths_csharp_Lab3
                 correct = 2;
             }
 
+            currentQuestion.CorrectAnswer = correct;
+
             if (correct == -1)
             {
                 MessageBox.Show("Please choose correct answer!");
                 return;
             }
+
+            HandleQuizzes.SaveQuizzesToFile(HandleQuizzes.ListWithAllQuizzes);
+
+            ResetFields();
+
+        }
+
+        private void ResetFields()
+        {
+            ChangeQuestionTB.Text = "";
+            ChangeAnswer1TB.Text = "";
+            ChangeAnswer2TB.Text = "";
+            ChangeAnswer3TB.Text = "";
+            Answer1RB.IsChecked = false;
+            Answer2RB.IsChecked = false;
+            Answer3RB.IsChecked = false;
+        }
+
+        private void SetFields()
+        {
+            ChangeQuestionTB.Text = currentQuestion.Statement;
+            ChangeAnswer1TB.Text = currentQuestion.Answers[0];
+            ChangeAnswer2TB.Text = currentQuestion.Answers[1];
+            ChangeAnswer3TB.Text = currentQuestion.Answers[2];
+
+            if (currentQuestion.CorrectAnswer == 0)
+            {
+                Answer1RB.IsChecked = true;
+            }
+            else if (currentQuestion.CorrectAnswer == 1)
+            {
+                Answer2RB.IsChecked = true;
+            }
+            else if (currentQuestion.CorrectAnswer == 2)
+            {
+                Answer3RB.IsChecked = true;
+            }
+        }
+
+        private void GoToChooseQuiz_Click(object sender, RoutedEventArgs e)
+        {
+            ChooseQuizWindow chooseQuizWindow = new ChooseQuizWindow();
+            chooseQuizWindow.Show();
+            this.Close();
         }
     }
 }

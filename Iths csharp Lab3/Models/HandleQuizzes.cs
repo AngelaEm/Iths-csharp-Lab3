@@ -42,6 +42,11 @@ namespace Iths_csharp_Lab3.Models
                     string quizFilePath = Path.Combine(folderPath, quizFileName);
                     File.WriteAllText(quizFilePath, json);
                 }
+                else
+                {
+                    ListWithAllQuizzes.Clear();
+                    ListWithAllQuizzes = LoadQuiz();
+                }
             }
             catch (Exception e)
             {
@@ -49,16 +54,16 @@ namespace Iths_csharp_Lab3.Models
             }
         }
 
-        public static void SaveQuestionsToFile(List<Question> listWithQuestions)
-        {
-            string folderName = "MyQuiz";
-            string localFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            string folderPath = Path.Combine(localFolderPath, folderName);
-            var json = JsonConvert.SerializeObject(listWithQuestions, Formatting.Indented);
-            string fileName = "myQuestions.txt";
-            string filePath = Path.Combine(folderPath, fileName);
-            File.WriteAllText(filePath, json);
-        }
+        //public static void SaveQuestionsToFile(List<Question> listWithQuestions)
+        //{
+        //    string folderName = "MyQuiz";
+        //    string localFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        //    string folderPath = Path.Combine(localFolderPath, folderName);
+        //    var json = JsonConvert.SerializeObject(listWithQuestions, Formatting.Indented);
+        //    string fileName = "myQuestions.txt";
+        //    string filePath = Path.Combine(folderPath, fileName);
+        //    File.WriteAllText(filePath, json);
+        //}
 
         public static void SaveQuizzesToFile(List<Quiz> listWithQuizzes)
         {
@@ -72,31 +77,31 @@ namespace Iths_csharp_Lab3.Models
         }
 
 
-        public static List<Question> LoadQuestions()
-        {
-            string folderName = "MyQuiz";
-            string fileName = "myQuestions.txt";
-            var localFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            string folderPath = Path.Combine(localFolderPath, folderName);
-            string filePath = Path.Combine(folderPath, fileName);
+        //public static List<Question> LoadQuestions()
+        //{
+        //    string folderName = "MyQuiz";
+        //    string fileName = "myQuestions.txt";
+        //    var localFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        //    string folderPath = Path.Combine(localFolderPath, folderName);
+        //    string filePath = Path.Combine(folderPath, fileName);
 
-            if (File.Exists(filePath))
-            {
-                try
-                {
-                    var json = File.ReadAllText(filePath);
-                    return JsonConvert.DeserializeObject<List<Question>>(json);
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
+        //    if (File.Exists(filePath))
+        //    {
+        //        try
+        //        {
+        //            var json = File.ReadAllText(filePath);
+        //            return JsonConvert.DeserializeObject<List<Question>>(json);
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            MessageBox.Show(e.Message);
                     
-                }
+        //        }
                 
 
-            }
-            return new List<Question>();
-        }
+        //    }
+        //    return new List<Question>();
+        //}
 
         public static List<Quiz> LoadQuiz()
         {

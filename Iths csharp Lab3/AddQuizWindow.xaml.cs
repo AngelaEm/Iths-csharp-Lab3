@@ -129,7 +129,7 @@ namespace Iths_csharp_Lab3
 
             CategoryNameTB.Text = string.Empty;
             AddQuestionTB.Text = string.Empty;
-            ImageTB.Text = string.Empty;
+            ImageTB.Text = "\\Images\\questionmark.png";
             Answer1TB.Text = string.Empty;
             Answer2TB.Text = string.Empty;
             Answer3TB.Text = string.Empty;
@@ -150,6 +150,13 @@ namespace Iths_csharp_Lab3
                     break;
                 }
             }
+        }
+
+        private void BackToMain_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
         }
     }
 }

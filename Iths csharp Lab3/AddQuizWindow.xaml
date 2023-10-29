@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Iths_csharp_Lab3"
-        mc:Ignorable="d" FontSize="14" FontWeight="Bold" Background="LightCoral" FontFamily="Comic Sans MS" Foreground="Cyan"
+        mc:Ignorable="d" FontSize="14" FontWeight="Bold" Background="Teal" FontFamily="Lato"
         Title="AddQuizWindow" Height="600" Width="550">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -39,24 +39,26 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="10"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Quizzy Trivia" Grid.Column="2" Grid.Row="1" FontSize="32" Width="220" Height="40" Foreground="Cyan" VerticalAlignment="Center" Margin="5"/>
-        <Image x:Name="BildLogga" Source="\Images\quizLogga2.png" Width="350" Height="110" Grid.Column="2" Grid.Row="2" Grid.RowSpan="2"  VerticalAlignment="Center"/>
+        <!--<TextBlock Text="Quizzy Trivia" Grid.Column="2" Grid.Row="1" FontSize="32" Width="220" Height="40" Foreground="Cyan" VerticalAlignment="Center" Margin="5"/>-->
+        <Image x:Name="BildLogga" Source="\Images\quizzyLogga.png" Width="350" Height="110" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2"  VerticalAlignment="Center"/>
 
         <Label Content="Name:" Grid.Column="1" Grid.Row="5"/>
-        <TextBox x:Name="QuizNameTB" Text="Enter quizname here" TextChanged="QuizNameTB_TextChanged" Grid.Column="2" Grid.Row="5" FontSize="12" Width="320" Margin="3" AcceptsReturn="true" TextWrapping="Wrap"
-                 GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" />
+        <TextBox x:Name="QuizNameTB" Text="Enter quizname here" TextChanged="QuizNameTB_TextChanged" Grid.Column="2" Grid.Row="5" FontSize="12" Width="320" 
+                 AcceptsReturn="true" TextWrapping="Wrap" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" />
         <Label Content="Category:" Grid.Column="1" Grid.Row="7"/>
-        <TextBox x:Name="CategoryNameTB" Text="Enter category here" Grid.Column="2" Grid.Row="7" FontSize="12" Width="320" Margin ="3" AcceptsReturn="true" TextWrapping="Wrap"
+        <TextBox x:Name="CategoryNameTB" Text="Enter category here" Grid.Column="2" Grid.Row="7" FontSize="12" Width="320" AcceptsReturn="true" TextWrapping="Wrap"
                  GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
         <Label Content="Image URL:" Grid.Column="1" Grid.Row="9"/>
-        <TextBox x:Name="ImageTB" Text="\Images\questionmark.png" Grid.Column="2" Grid.Row="9" FontSize="12" Width="320" Margin ="3" AcceptsReturn="false" TextWrapping="NoWrap"
+        <TextBox x:Name="ImageTB" Text="\Images\questionmark.png" Grid.Column="2" Grid.Row="9" FontSize="12" Width="320" AcceptsReturn="false" TextWrapping="NoWrap"
                  GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
         <Label Content="Question:" Grid.Column="1" Grid.Row="11"/>
-        <TextBox x:Name="AddQuestionTB" Text="Enter question here" Grid.Column="2" Grid.Row="11" FontSize="12" Width="320" Margin="3" AcceptsReturn="true" TextWrapping="Wrap"
+        <TextBox x:Name="AddQuestionTB" Text="Enter question here" Grid.Column="2" Grid.Row="11" FontSize="12" Width="320" AcceptsReturn="true" TextWrapping="Wrap"
                  GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
         <Label Content="Answers:" Grid.Column="1" Grid.Row="13"/>
 
@@ -90,12 +92,14 @@
                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>
 
-        <Button x:Name="AddQuestion" Content="Add Question" Grid.Column="2" Grid.Row="17" Width="150" 
-                VerticalAlignment="Center" Background="cyan" Foreground="LightCoral" Click="AddQuestion_Click" />
-        <Button x:Name="AddQuiz" Content="Add Quiz" Grid.Column="2" Grid.Row="19" Width="150" 
-                VerticalAlignment="Center" Background="cyan" Foreground="LightCoral" Click="AddQuiz_Click" />
-        <Button x:Name="GoToChooseQuiz" Content="Play" Grid.Column="2" Grid.Row="21" Width="150" 
-                VerticalAlignment="Center" Background="cyan" Foreground="LightCoral" Click="GoToChooseQuiz_Click" />
+        <Button x:Name="AddQuestion" Content="Add Question" Grid.Column="2" Grid.Row="17" Width="150" Height="30"
+                VerticalAlignment="Center" Background="cyan" BorderBrush="Coral" BorderThickness="2" Click="AddQuestion_Click" />
+        <Button x:Name="AddQuiz" Content="Add Quiz" Grid.Column="2" Grid.Row="19" Width="150" Height="30"
+                VerticalAlignment="Center" Background="cyan" BorderBrush="Coral" BorderThickness="2" Click="AddQuiz_Click" />
+        <Button x:Name="GoToChooseQuiz" Content="Play Quiz" Grid.Column="2" Grid.Row="21" Width="150" Height="30"
+                VerticalAlignment="Center" Background="cyan" BorderBrush="Coral" BorderThickness="2" Click="GoToChooseQuiz_Click" />
+        <Button x:Name="BackToMain" Content="Back to Main" Grid.Column="2" Grid.Row="23" Width="150" Height="30"
+                VerticalAlignment="Center" Background="cyan" BorderBrush="Coral" BorderThickness="2" Click="BackToMain_Click"  />
 
 
     </Grid>
