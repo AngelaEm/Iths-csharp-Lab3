@@ -22,6 +22,7 @@ namespace Iths_csharp_Lab3.Models
             Statement = statement;          
             CorrectAnswer = correctAnswer;
             Answers = answers;
+            
         }
 
         public Question(string category, string statement, int correctAnswer, string imagePath, params string[] answers)
@@ -31,6 +32,12 @@ namespace Iths_csharp_Lab3.Models
             CorrectAnswer = correctAnswer;
             Answers = answers;
             ImagePath = imagePath;
+            
+        }
+
+        public Question()
+        {
+            
         }
 
     }

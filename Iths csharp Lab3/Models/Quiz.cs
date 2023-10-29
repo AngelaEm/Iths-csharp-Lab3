@@ -15,18 +15,24 @@ namespace Iths_csharp_Lab3.Models
 {
     public class Quiz
     {
-        
+        private List<Question> _questions;
+        public List<Question> Questions => _questions;
+        private string _title = string.Empty;
+        public string Title { get; set; }
 
-        //private string _title = string.Empty;
-        //public IEnumerable<Question> Questions => _questions;
-        public string Title { get; set; }   
-        
-        public List<Question> Questions { get; set; }
+        public Quiz(string title)
+        {
+            Title = title;
+            _questions = new List<Question>();
+         
+        }
 
         public Quiz()
         {
-            Questions = new List<Question>();          
+            _questions = new List<Question>();
         }
+
+
 
 
         /// <summary>
@@ -36,9 +42,9 @@ namespace Iths_csharp_Lab3.Models
         public Question GetRandomQuestion()
         {
             Random random = new Random();
-            int randomIndex = random.Next(0, Questions.Count);
+            int randomIndex = random.Next(0, _questions.Count);
 
-            return Questions[randomIndex];
+            return _questions[randomIndex];
             
         }
 
@@ -52,7 +58,7 @@ namespace Iths_csharp_Lab3.Models
         public void AddQuestion(string category, string statement, int correctAnswer, params string[] answers)
         {
             Question newQuestion = new Question(category, statement, correctAnswer, answers);
-            Questions.Add(newQuestion);
+            _questions.Add(newQuestion);
             
         }
 
@@ -67,7 +73,7 @@ namespace Iths_csharp_Lab3.Models
         public void AddQuestion(string category, string statement, int correctAnswer, string imagePath, params string[] answers)
         {
             Question newQuestion = new Question(category, statement, correctAnswer, imagePath, answers);
-            Questions.Add(newQuestion);
+            _questions.Add(newQuestion);
 
         }
 
@@ -75,9 +81,9 @@ namespace Iths_csharp_Lab3.Models
         /// Add question to Quiz
         /// </summary>
         /// <param name="question">Question</param>
-        public void AddToQuiz(Question question)
+        public void AddQuestion(Question question)
         {
-            Questions.Add(question);
+            _questions.Add(question);
         }
 
        
@@ -87,135 +93,111 @@ namespace Iths_csharp_Lab3.Models
         /// <param name="question">Question</param>
         public void RemoveQuestion(Question question)
         {
-            Questions.Remove(question);
-        }
-
-        public void GenerateFolderAndTextFile()
-        {
-            if (Questions.Count == 0)
-            {
-                GenerateQuestions();
-            }
-
-            if(AllQuizzes.ListWithAllQuizzes.Count == 0)
-            {
-                GenerateMegaQuiz();
-            }
-           
-
-            string folderName = "MyQuiz";
-            string localFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            string folderPath = Path.Combine(localFolderPath, folderName);
-
-            var json = JsonConvert.SerializeObject(Questions, Formatting.Indented);
-
-            try
-            {
-                if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }
-                string fileName = "myQuestions";
-                string filePath = Path.Combine(folderPath, fileName);
-                File.WriteAllText(filePath, json);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
+            _questions.Remove(question);
         }
 
         
+        
 
-        //public List<Question> LoadQuestions()
-        //{
-        //    string folderName = "MyQuiz";
-        //    string fileName = "MegaQuizWithAllQuestions.json";
-        //    string localFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        //    string folderPath = Path.Combine(localFolderPath, folderName);
-        //    string filePath = Path.Combine(folderPath, fileName);
 
-        //    if (File.Exists(filePath))
-        //    {
-        //        string json = File.ReadAllText(filePath);
-        //        Quiz loadedQuiz = JsonConvert.DeserializeObject<Quiz>(json);
-        //        return loadedQuiz.Questions;
-        //    }
-        //    return new List<Question>();
-        //}
-
-        //public void LoadQuiz()
-        //{
-        //    string folderName = "MyQuiz";
-        //    string fileName = "MegaQuizWithAllQuestions.json";
-        //    string localFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        //    string folderPath = Path.Combine(localFolderPath, folderName);
-        //    string filePath = Path.Combine(folderPath, fileName);
-
-        //    if (File.Exists(filePath))
-        //    {
-        //        string json = File.ReadAllText(filePath);
-        //        Quiz loadedQuiz = JsonConvert.DeserializeObject<Quiz>(json);
-        //        this.Questions = loadedQuiz.Questions;
-
-        //    }
-            
-        //}
-
-       
         /// <summary>
         /// Generate questions and add question to list
         /// </summary>
         public void GenerateQuestions()
         {
-            AddQuestion("Programming", "What does HTML stand for?", 0, "questionmark.png", new string[] {"Hypertext Markup Language", "Hyper Transfer Markup Language", "Hypertext Transfer Mode Language"});
+            // Programming
+            AddQuestion("Programming", "What does HTML stand for?", 0, "\\Images\\ImageProgramming.png", new string[] { "Hypertext Markup Language", "Hyper Transfer Markup Language", "Hypertext Transfer Mode Language" });
+            AddQuestion("Programming", "Which programming language is known for its simplicity and readability?", 2, "\\Images\\ImageProgramming.png", new string[] { "C++", "Java", "Python" });
+            AddQuestion("Programming", "What is the symbol for a single-line comment in C#?", 0, "\\Images\\ImageProgramming.png", new string[] { "//", "/*", "#" });
+            AddQuestion("Programming", "Which language is primarily used for iOS and macOS applications?", 2, "\\Images\\ImageProgramming.png", new string[] { "Python", "Java", "Swift" });
+            AddQuestion("Programming", "Which of the following is not a database?", 2, "\\Images\\ImageProgramming.png", new string[] { "MySQL", "PostgreSQL", "JavaScript" });
+            AddQuestion("Programming", "In which language was the TensorFlow library developed?", 0, "\\Images\\ImageProgramming.png", new string[] { "Python", "Java", "C++" });
+            AddQuestion("Programming", "Which keyword is used to define a class in Java?", 0, "\\Images\\ImageProgramming.png", new string[] { "class", "define", "new" });
+            AddQuestion("Programming", "What is the primary purpose of a web server?", 1, "\\Images\\ImageProgramming.png", new string[] { "Run desktop applications", "Serve web pages", "Store files" });
+            AddQuestion("Programming", "Which tag is used to create a hyperlink in HTML?", 1, "\\Images\\ImageProgramming.png", new string[] { "<hl>", "<a>", "<link>" });
+            AddQuestion("Programming", "What is the main use of JavaScript?", 0, "\\Images\\ImageProgramming.png", new string[] { "Web development", "Operating system development", "Embedded systems" });
 
-            AddQuestion("Programming", "Which programming language is known for its simplicity and readability?", 2, "\\Images\\loggaQuiz1.png", new string[] {"C++", "Java", "Python"});
+            // Mathematics
+            AddQuestion("Mathematics", "What is the result of 7 multiplied by 8?", 1, "\\Images\\ImagePi.png", new string[] { "48", "56", "64" });
+            AddQuestion("Mathematics", "What is the square root of 144?", 0, "\\Images\\ImagePi.png", new string[] { "12", "14", "16" });
+            AddQuestion("Mathematics", "If a circle's diameter is 8 units, what is its radius?", 1, "\\Images\\ImagePi.png", new string[] { "4 units", "8 units", "16 units" });
+            AddQuestion("Mathematics", "Which of these numbers is an irrational number?", 2, "\\Images\\ImagePi.png", new string[] { "4", "2/3", "√2" });
+            AddQuestion("Mathematics", "What comes next in the sequence: 2, 4, 8, 16, ...?", 2, "\\Images\\ImagePi.png", new string[] { "18", "20", "32" });
+            AddQuestion("Mathematics", "How many degrees are in a right angle?", 0, "\\Images\\ImagePi.png", new string[] { "90", "45", "180" });
+            AddQuestion("Mathematics", "Which of these is not a prime number?", 2, "\\Images\\ImagePi.png", new string[] { "13", "17", "21" });
+            AddQuestion("Mathematics", "Which of the following shapes has the most sides?", 2, "\\Images\\ImagePi.png", new string[] { "Triangle", "Square", "Pentagon" });
+            AddQuestion("Mathematics", "What is the smallest two-digit prime number?", 0, "\\Images\\ImagePi.png", new string[] { "11", "12", "10" });
+            AddQuestion("Mathematics", "How many vertices does a cube have?", 2, "\\Images\\ImagePi.png", new string[] { "6", "12", "8" });
 
-            AddQuestion("Programming", "What is the symbol for a single-line comment in C#?", 0, "\\Images\\quizLogga2.png", new string[] { "//", "/*", "#"});
+            // Music
+            AddQuestion("Music", "Which instrument has black and white keys and is commonly used in classical music?", 2, "\\Images\\ImageGKlav.png", new string[] { "Guitar", "Violin", "Piano" });
+            AddQuestion("Music", "Which Beatles album is often considered one of the greatest albums of all time?", 1, "\\Images\\ImageGKlav.png", new string[] { "Please Please Me", "Sgt. Pepper's Lonely Hearts Club Band", "Let It Be" });
+            AddQuestion("Music", "Who is known as the 'King of Rock and Roll'?", 0, "\\Images\\ImageGKlav.png", new string[] { "Elvis Presley", "Michael Jackson", "Freddie Mercury" });
+            AddQuestion("Music", "Which musical instrument is said to have a total of 88 keys?", 2, "\\Images\\ImageGKlav.png", new string[] { "Guitar", "Violin", "Piano" });
+            AddQuestion("Music", "In which decade did The Beatles become famous?", 0, "\\Images\\ImageGKlav.png", new string[] { "1960s", "1970s", "1980s" });
+            AddQuestion("Music", "Which famous singer is known for hits like 'Purple Rain' and 'When Doves Cry'?", 1, "\\Images\\ImageGKlav.png", new string[] { "Michael Jackson", "Prince", "David Bowie" });
+            AddQuestion("Music", "Which musical term indicates a chord where the notes are played one after the other, rather than all together?", 2, "\\Images\\ImageGKlav.png", new string[] { "Chorus", "Bridge", "Arpeggio" });
+            AddQuestion("Music", "Which of these instruments is a woodwind instrument?", 1, "\\Images\\ImageGKlav.png", new string[] { "Violin", "Flute", "Trombone" });
+            AddQuestion("Music", "Which composer wrote the famous 'Moonlight Sonata'?", 2, "\\Images\\ImageGKlav.png", new string[] { "Mozart", "Handel", "Beethoven" });
+            AddQuestion("Music", "Which of these is NOT a string instrument?", 0, "\\Images\\ImageGKlav.png", new string[] { "Trumpet", "Guitar", "Cello" });
 
-            AddQuestion("Mathematics", "What is the result of 7 multiplied by 8?", 1, new string[] { "48", "56", "64"});
-
-            AddQuestion("Mathematics", "What is the square root of 144?", 0, new string[] { "12", "14", "16"});
-
-            AddQuestion("Music", "Which instrument has black and white keys and is commonly used in classical music?", 2, new string[] {"Guitar", "Violin", "Piano"});
-
-            AddQuestion("Music", "Which Beatles album is often considered one of the greatest albums of all time?", 1, new string[] {"Please Please Me", "Sgt. Pepper's Lonely Hearts Club Band","Let It Be"});
-
-            AddQuestion("Nature", "What is the largest species of penguin?", 0, new string[] {"Emperor Penguin", "African Penguin", "Little Blue Penguin"});
-
-            AddQuestion("Nature", "What is the world's largest land mammal?", 1, new string[] {"Giraffe", "African Elephant", "Rhinoceros"});
-
-            AddQuestion("Nature", "What is the capital city of Australia?", 2, new string[] {"Melbourne", "Sydney", "Canberra"});
-
-            AddQuestion("Programming", "What is the most widely used programming language for web development?", 1, new string[] {"Java", "JavaScript", "Python"});
-
-            AddQuestion("Programming", "Which data type is used to store a single character in C#?", 2, new string[] {"int", "float", "char"});
-
-            AddQuestion("Mathematics", "What is the value of Pi (π) to two decimal places?", 0, new string[] {"3.14", "3.16", "3.18"});
-
-            AddQuestion("Mathematics", "How many sides does a hexagon have?", 0, new string[] {"6", "5","7"});
-       
-            AddQuestion("Music", "Which instrument is known as the 'King of Instruments'?", 2, new string[] {"Guitar", "Violin", "Pipe Organ"});
-
-            AddQuestion("Music", "Who is often referred to as the 'Queen of Pop'?", 0, new string[] {"Madonna", "Whitney Houston", "Celine Dion"});
-
-            AddQuestion("Nature", "What is the largest species of shark?", 0, new string[] {"Whale Shark", "Great White Shark", "Hammerhead Shark"});
-
-            AddQuestion("Nature", "What is the national bird of the United States?", 0, new string[] {"Bald Eagle", "Turkey","Pigeon"});
-
-            AddQuestion("Nature", "Which gas do plants absorb from the atmosphere during photosynthesis?", 1, new string[] {"Oxygen", "Carbon Dioxide", "Nitrogen"});
-
-            AddQuestion("Nature", "What is the world's largest and heaviest species of penguin?", 0, new string[] {"Emperor Penguin", "King Penguin", "Little Blue Penguin"});
+            // Nature
+            AddQuestion("Nature", "What is the largest species of penguin?", 0, "\\Images\\ImageBlomma.png", new string[] { "Emperor Penguin", "African Penguin", "Little Blue Penguin" });
+            AddQuestion("Nature", "What is the world's largest land mammal?", 1, "\\Images\\ImageBlomma.png", new string[] { "Giraffe", "African Elephant", "Rhinoceros" });
+            AddQuestion("Nature", "What is the capital city of Australia?", 2, "\\Images\\ImageBlomma.png", new string[] { "Melbourne", "Sydney", "Canberra" });
+            AddQuestion("Nature", "Which plant is known to have a soothing effect on burns?", 0, "\\Images\\ImageBlomma.png", new string[] { "Aloe Vera", "Tulip", "Rose" });
+            AddQuestion("Nature", "Which of these animals is a marsupial?", 2, "\\Images\\ImageBlomma.png", new string[] { "Lion", "Elephant", "Kangaroo" });
+            AddQuestion("Nature", "Which planet is known as the 'Red Planet'?", 0, "\\Images\\ImageBlomma.png", new string[] { "Mars", "Venus", "Jupiter" });
+            AddQuestion("Nature", "What is the largest animal ever known to exist on Earth?", 1, "\\Images\\ImageBlomma.png", new string[] { "Tyrannosaurus Rex", "Blue Whale", "African Elephant" });
+            AddQuestion("Nature", "Which bird is capable of true sustained flight?", 2, "\\Images\\ImageBlomma.png", new string[] { "Ostrich", "Penguin", "Eagle" });
+            AddQuestion("Nature", "What is the main gas found in the Earth's atmosphere?", 0, "\\Images\\ImageBlomma.png", new string[] { "Nitrogen", "Oxygen", "Carbon Dioxide" });
+            AddQuestion("Nature", "Which animal is known as the 'King of the Jungle'?", 1, "\\Images\\ImageBlomma.png", new string[] { "Tiger", "Lion", "Elephant" });
 
         }
 
-        public void GenerateMegaQuiz()
+        public void GenerateQuizzes()
         {
-            Quiz megaQuiz = new Quiz();
-            megaQuiz.Title = "Quizzy Trivia MegaQuiz";
-            megaQuiz.GenerateQuestions();
-            AllQuizzes.ListWithAllQuizzes.Add(megaQuiz);
-        }
+
+            GenerateQuestions();
+
+
+            Quiz nature = new Quiz("Nature");
+            Quiz mathematics = new Quiz("Mathematics");
+            Quiz programming = new Quiz("Programming");
+            Quiz music = new Quiz("Music");
+            //Quiz megaQuiz = new Quiz("MagaQuiz");
+
+            HandleQuizzes.ListWithAllQuizzes.Add(nature);
+            HandleQuizzes.ListWithAllQuizzes.Add(mathematics);
+            HandleQuizzes.ListWithAllQuizzes.Add(programming);
+            HandleQuizzes.ListWithAllQuizzes.Add(music);
+            //HandleQuizzes.ListWithAllQuizzes.Add(megaQuiz);
+
+            foreach (var question in _questions)
+            {
+                //megaQuiz.AddQuestion(question);
+                
+                switch (question.Category)
+                {
+                    case "Nature":
+
+                        nature.AddQuestion(question);
+                        break;
+
+                    case "Mathematics":
+                        mathematics.AddQuestion(question);
+                        break;
+
+                    case "Programming":
+                        programming.AddQuestion(question);
+                        break;
+
+                    case "Music":
+                        music.AddQuestion(question);
+                        break;
+
+                }
+            }
+        }      
     }
 }

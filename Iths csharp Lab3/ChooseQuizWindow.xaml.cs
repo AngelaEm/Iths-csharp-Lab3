@@ -23,56 +23,50 @@ namespace Iths_csharp_Lab3
     /// </summary>
     public partial class ChooseQuizWindow : Window
     {
-        private List<string> selectedCategories = new List<string>();
-
-        private List<Question> currentList = new List<Question>();
-
-        private Quiz newQuiz = new Quiz();
-
-
+       
         public ChooseQuizWindow()
         {
             InitializeComponent();
-           
-            ChooseQuizCB.ItemsSource = AllQuizzes.ListWithAllQuizzes;
+
+            if (HandleQuizzes.ListWithAllQuizzes.Count != HandleQuizzes.LoadQuiz().Count)
+            {
+                HandleQuizzes.ListWithAllQuizzes = HandleQuizzes.LoadQuiz();
+            }
+            HandleQuizzes.LoadQuestions();
             
+            ChooseQuizCB.ItemsSource = HandleQuizzes.ListWithAllQuizzes;    
+            
+
         }
-
-
-        /// <summary>
-        /// Event handler for checkbox checked events. Clears the SelectedCategories list and then adds categories based 
-        /// on which checkboxes are checked.
-        /// </summary>
-        /// <param name="sender">The checkbox that initiated the event</param>
-        /// <param name="e">Event arguments</param>
+        
         private void CategoryChecked(object sender, RoutedEventArgs e)
         {
-            if (selectedCategories != null)
+            
+            if (HandleQuizzes.ListWithCurrentCategories.Count != 0)
             {
-                selectedCategories.Clear();
+                HandleQuizzes.ListWithCurrentCategories.Clear();
             }
 
             if (ProgrammingCB.IsChecked == true)
             {
-                selectedCategories.Add("Programming");
+                HandleQuizzes.ListWithCurrentCategories.Add("Programming");
             }
             if (MusicCB.IsChecked == true)
             {
-                selectedCategories.Add("Music");
+                HandleQuizzes.ListWithCurrentCategories.Add("Music");
             }
             if (NatureCB.IsChecked == true)
             {
-                selectedCategories.Add("Nature");
+                HandleQuizzes.ListWithCurrentCategories.Add("Nature");
             }
             if (MathematicsCB.IsChecked == true)
             {
-                selectedCategories.Add("Mathematics");
+                HandleQuizzes.ListWithCurrentCategories.Add("Mathematics");
             }
             if (MixedQuestionsCB.IsChecked == true)
             {
-                selectedCategories.Add("Mixed Questions");
+                HandleQuizzes.ListWithCurrentCategories.Add("Mixed Questions");
             }
-
         }
 
 
@@ -84,27 +78,27 @@ namespace Iths_csharp_Lab3
         /// <param name="e">Event arguments</param>
         private void CategoryUnchecked(object sender, RoutedEventArgs e)
         {
-            if (selectedCategories != null)
+            if (HandleQuizzes.ListWithCurrentCategories != null)
             {
                 if (ProgrammingCB.IsChecked == false)
                 {
-                    selectedCategories.Remove("Programming");
+                    HandleQuizzes.ListWithCurrentCategories.Remove("Programming");
                 }
                 if (MusicCB.IsChecked == false)
                 {
-                    selectedCategories.Remove("Music");
+                    HandleQuizzes.ListWithCurrentCategories.Remove("Music");
                 }
                 if (NatureCB.IsChecked == false)
                 {
-                    selectedCategories.Remove("Nature");
+                    HandleQuizzes.ListWithCurrentCategories.Remove("Nature");
                 }
                 if (MathematicsCB.IsChecked == false)
                 {
-                    selectedCategories.Remove("Mathematics");
+                    HandleQuizzes.ListWithCurrentCategories.Remove("Mathematics");
                 }
                 if (MixedQuestionsCB.IsChecked == false)
                 {
-                    selectedCategories.Remove("Mixed Questions");
+                    HandleQuizzes.ListWithCurrentCategories.Remove("Mixed Questions");
                 }
             }
         }
@@ -118,10 +112,10 @@ namespace Iths_csharp_Lab3
         private void ChooseQuizCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (ChooseQuizCB.SelectedItem is Quiz selectedQuiz)
-            {
-                AllQuizzes.SelectedQuiz = selectedQuiz;
-              
-            }           
+            {            
+                HandleQuizzes.SelectedQuiz = selectedQuiz;
+                
+            }          
         }
 
 
@@ -133,51 +127,21 @@ namespace Iths_csharp_Lab3
         /// <param name="e">Event arguments</param>
         private void GoToGameWindow_Click(object sender, RoutedEventArgs e)
         {
-            if (AllQuizzes.SelectedQuiz != null && selectedCategories != null)
+            if (ChooseQuizCB.SelectedItem != null && HandleQuizzes.ListWithCurrentCategories.Count != 0)
             {
                 MessageBox.Show("Please choose quiz or categories!");
-                selectedCategories.Clear();
+                HandleQuizzes.ListWithCurrentCategories.Clear();
+                ChooseQuizCB.SelectedItem = null;
+                ProgrammingCB.IsChecked = false;
+                MusicCB.IsChecked = false;
+                NatureCB.IsChecked = false;
+                MathematicsCB .IsChecked = false;
+                MixedQuestionsCB.IsChecked = false;
 
                 return;
             }
+
             GameWindow gameWindow = new GameWindow();
-
-            newQuiz.GenerateQuestions();
-            
-            if (AllQuizzes.SelectedQuiz != null)
-            {
-                gameWindow.SelectedQuiz = AllQuizzes.SelectedQuiz;
-                
-            }
-
-            else
-            {
-               
-                if (selectedCategories.Contains("Mixed Questions"))
-                {
-                    foreach (var question in newQuiz.Questions)
-                    {
-                        currentList.Add(question);
-                    }
-
-                }
-                else
-                {
-                    foreach (var category in selectedCategories)
-                    {
-                        foreach (var question in newQuiz.Questions)
-                        {
-                            if (question.Category == category)
-                            {
-                                currentList.Add(question);
-                            }
-                        }
-                    }
-                }
-            }
-
-            gameWindow.currentList = currentList;
-
             gameWindow.Show();
             this.Close();
         }

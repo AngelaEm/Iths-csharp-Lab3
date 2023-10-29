@@ -23,18 +23,12 @@ namespace Iths_csharp_Lab3
     /// </summary>
     public partial class GameWindow : Window
     {
-        
-        Question currentQuestion;
 
-        Quiz currentQuiz = new Quiz();
-
-        public List<Question> currentList = new List<Question>();
-
-        public Quiz SelectedQuiz { get; set; }
+        private Question currentQuestion = null;
 
         private int answeredQuestions = 0;
 
-        private double corrextAnsweredQuestions = 0;
+        private double correctAnsweredQuestions = 0;
 
         private double questionsInQuiz = 0;
 
@@ -45,6 +39,37 @@ namespace Iths_csharp_Lab3
         {
             InitializeComponent();
 
+            
+            if (HandleQuizzes.ListWithCurrentCategories.Count != 0)
+
+            {
+                foreach (var question in HandleQuizzes.LoadQuestions())
+                {
+                    foreach (var category in HandleQuizzes.ListWithCurrentCategories)
+                    {
+                        if (question.Category == category)
+                        {
+                            HandleQuizzes.ListWithCurrentQuestions.Add(question);
+                        }
+                    }                 
+                }
+                while (HandleQuizzes.ListWithCurrentQuestions.Count > 10)
+                {
+                    HandleQuizzes.ListWithCurrentQuestions.Remove(GetRandomQuestionFromList(HandleQuizzes.ListWithCurrentQuestions));
+                }
+            }
+            else
+            {
+                
+
+                foreach (var question in HandleQuizzes.SelectedQuiz.Questions)
+                {
+                    HandleQuizzes.ListWithCurrentQuestions.Add(question);
+                }              
+            }
+
+            questionsInQuiz = HandleQuizzes.ListWithCurrentQuestions.Count;
+
             SetQuestionImage("\\Images\\questionmark.png");
             
         }
@@ -53,21 +78,9 @@ namespace Iths_csharp_Lab3
         private void Question_Click(object sender, RoutedEventArgs e)
         {
             QuestionButton.Content = "Score";
-            
-
-            if (SelectedQuiz != null)
-            {
-                currentQuiz = SelectedQuiz;
-                foreach (var question in currentQuiz.Questions)
-                {
-                    currentList.Add(question);
-                }
-            }         
-
-            questionsInQuiz = currentList.Count;
+                     
             LoadNextQuestion();
         }
-
 
 
         private void Answer1Button_Click(object sender, RoutedEventArgs e)
@@ -76,7 +89,7 @@ namespace Iths_csharp_Lab3
 
             if (currentQuestion.CorrectAnswer == 0)
             {
-                corrextAnsweredQuestions++;
+                correctAnsweredQuestions++;
 
             }
 
@@ -91,7 +104,7 @@ namespace Iths_csharp_Lab3
 
             if (currentQuestion.CorrectAnswer == 1)
             {
-                corrextAnsweredQuestions++;
+                correctAnsweredQuestions++;
 
             }
 
@@ -106,7 +119,7 @@ namespace Iths_csharp_Lab3
 
             if (currentQuestion.CorrectAnswer == 2)
             {
-                corrextAnsweredQuestions++;
+                correctAnsweredQuestions++;
 
             }
            
@@ -119,8 +132,8 @@ namespace Iths_csharp_Lab3
 
         private void DisplayResult()
         {
-            QuestionButton.Content = $"{corrextAnsweredQuestions}/{answeredQuestions}";
-            percentage = (corrextAnsweredQuestions / answeredQuestions) * 100;
+            QuestionButton.Content = $"{correctAnsweredQuestions}/{answeredQuestions}";
+            percentage = (correctAnsweredQuestions / answeredQuestions) * 100;
             ScoreTB.Text = $"{Math.Round(percentage, 2)}%";
             MadeQuestionProgressBar.Value += 100 / questionsInQuiz;
         }
@@ -129,10 +142,10 @@ namespace Iths_csharp_Lab3
         private void LoadNextQuestion()
         {
 
-            if (currentQuiz != null && currentList.Count != 0)
+            if (HandleQuizzes.ListWithCurrentQuestions.Count != 0)
             {
 
-                currentQuestion = GetRandomQuestionFromList(currentList);
+                currentQuestion = GetRandomQuestionFromList(HandleQuizzes.ListWithCurrentQuestions);
 
                 if (currentQuestion.ImagePath != null)
                 {
@@ -150,12 +163,10 @@ namespace Iths_csharp_Lab3
 
             else
             {
-
-
-                MessageBox.Show($"Well done! You scored {corrextAnsweredQuestions}/{answeredQuestions}!");
-                corrextAnsweredQuestions = 0;
+                MessageBox.Show($"Well done! You scored {correctAnsweredQuestions}/{answeredQuestions}!");
+                correctAnsweredQuestions = 0;
                 answeredQuestions = 0;
-               
+                HandleQuizzes.ListWithCurrentQuestions.Clear();
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
                 this.Close();
@@ -164,7 +175,7 @@ namespace Iths_csharp_Lab3
 
         public void RemoveQuestionFromList(Question question)
         {
-            currentList.Remove(question);
+            HandleQuizzes.ListWithCurrentQuestions.Remove(question);
         }
 
         public Question GetRandomQuestionFromList(List<Question> listWithQuestions)
@@ -206,11 +217,11 @@ namespace Iths_csharp_Lab3
 
         private void BackToMainWindow_Click(object sender, RoutedEventArgs e)
         {
-            
+            HandleQuizzes.ListWithCurrentQuestions.Clear();
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
 
-        }
+        }           
     }
 }

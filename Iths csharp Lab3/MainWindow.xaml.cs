@@ -24,15 +24,11 @@ namespace Iths_csharp_Lab3
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        Quiz newQuiz = new Quiz();
-
         public MainWindow()
         {
             InitializeComponent();
-            
-            newQuiz.GenerateFolderAndTextFile();
-           
+
+            HandleQuizzes.GenerateFolderAndTextFile();    
             
         }
 
@@ -70,8 +66,6 @@ namespace Iths_csharp_Lab3
             EditQuizWindow editQuizWindow = new EditQuizWindow();
             editQuizWindow.Show();
             this.Close();
-        }
-
-        
+        }        
     }
 }
