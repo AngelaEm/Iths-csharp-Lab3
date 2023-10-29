@@ -111,7 +111,7 @@ namespace Iths_csharp_Lab3.Models
             AddQuestion("Programming", "What is the symbol for a single-line comment in C#?", 0, "\\Images\\ImageProgramming.png", new string[] { "//", "/*", "#" });
             AddQuestion("Programming", "Which language is primarily used for iOS and macOS applications?", 2, "\\Images\\ImageProgramming.png", new string[] { "Python", "Java", "Swift" });
             AddQuestion("Programming", "Which of the following is not a database?", 2, "\\Images\\ImageProgramming.png", new string[] { "MySQL", "PostgreSQL", "JavaScript" });
-            AddQuestion("Programming", "In which language was the TensorFlow library developed?", 0, "\\Images\\ImageProgramming.png", new string[] { "Python", "Java", "C++" });
+            AddQuestion("Programming", "Which database is known for using structured query language?", 1, "\\Images\\ImageProgramming.png", new string[] { "MongoDB", "SQLite", "Redis" });
             AddQuestion("Programming", "Which keyword is used to define a class in Java?", 0, "\\Images\\ImageProgramming.png", new string[] { "class", "define", "new" });
             AddQuestion("Programming", "What is the primary purpose of a web server?", 1, "\\Images\\ImageProgramming.png", new string[] { "Run desktop applications", "Serve web pages", "Store files" });
             AddQuestion("Programming", "Which tag is used to create a hyperlink in HTML?", 1, "\\Images\\ImageProgramming.png", new string[] { "<hl>", "<a>", "<link>" });
@@ -144,7 +144,7 @@ namespace Iths_csharp_Lab3.Models
             // Nature
             AddQuestion("Nature", "What is the largest species of penguin?", 0, "\\Images\\ImageBlomma.png", new string[] { "Emperor Penguin", "African Penguin", "Little Blue Penguin" });
             AddQuestion("Nature", "What is the world's largest land mammal?", 1, "\\Images\\ImageBlomma.png", new string[] { "Giraffe", "African Elephant", "Rhinoceros" });
-            AddQuestion("Nature", "What is the capital city of Australia?", 2, "\\Images\\ImageBlomma.png", new string[] { "Melbourne", "Sydney", "Canberra" });
+            AddQuestion("Nature", "Which plant is known for its ability to retain water in arid conditions?", 2, "\\Images\\ImageVäxt.png", new string[] { "Fern", "Sunflower", "Cactus" });
             AddQuestion("Nature", "Which plant is known to have a soothing effect on burns?", 0, "\\Images\\ImageBlomma.png", new string[] { "Aloe Vera", "Tulip", "Rose" });
             AddQuestion("Nature", "Which of these animals is a marsupial?", 2, "\\Images\\ImageBlomma.png", new string[] { "Lion", "Elephant", "Kangaroo" });
             AddQuestion("Nature", "Which planet is known as the 'Red Planet'?", 0, "\\Images\\ImageBlomma.png", new string[] { "Mars", "Venus", "Jupiter" });
@@ -158,20 +158,18 @@ namespace Iths_csharp_Lab3.Models
         public void GenerateQuizzes()
         {
 
-            GenerateQuestions();
-
 
             Quiz nature = new Quiz("Nature");
             Quiz mathematics = new Quiz("Mathematics");
             Quiz programming = new Quiz("Programming");
             Quiz music = new Quiz("Music");
-            //Quiz megaQuiz = new Quiz("MagaQuiz");
+            
 
             HandleQuizzes.ListWithAllQuizzes.Add(nature);
             HandleQuizzes.ListWithAllQuizzes.Add(mathematics);
             HandleQuizzes.ListWithAllQuizzes.Add(programming);
             HandleQuizzes.ListWithAllQuizzes.Add(music);
-            //HandleQuizzes.ListWithAllQuizzes.Add(megaQuiz);
+            
 
             foreach (var question in _questions)
             {

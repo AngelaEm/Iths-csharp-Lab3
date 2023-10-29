@@ -57,7 +57,7 @@
                 <CheckBox x:Name="MusicCB" Content="Music" FontSize="12" Foreground="LightCoral" Checked="CategoryChecked" Unchecked="CategoryUnchecked"/>
                 <CheckBox x:Name="NatureCB" Content="Nature" FontSize="12" Foreground="LightCoral" Checked="CategoryChecked" Unchecked="CategoryUnchecked"/>
                 <CheckBox x:Name="MathematicsCB" Content="Mathematics" FontSize="12" Foreground="LightCoral" Checked="CategoryChecked" Unchecked="CategoryUnchecked"/>
-                <CheckBox x:Name="MixedQuestionsCB" Content="Mixed Questions" FontSize="12" Foreground="LightCoral" Checked="CategoryChecked" Unchecked="CategoryUnchecked"/>
+                <!--<CheckBox x:Name="MixedQuestionsCB" Content="Mixed Questions" FontSize="12" Foreground="LightCoral" Checked="CategoryChecked" Unchecked="CategoryUnchecked"/>-->
             </StackPanel>
             
             

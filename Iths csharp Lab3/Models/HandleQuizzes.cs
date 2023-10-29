@@ -82,8 +82,17 @@ namespace Iths_csharp_Lab3.Models
 
             if (File.Exists(filePath))
             {
-                var json = File.ReadAllText(filePath);
-                return JsonConvert.DeserializeObject<List<Question>>(json);
+                try
+                {
+                    var json = File.ReadAllText(filePath);
+                    return JsonConvert.DeserializeObject<List<Question>>(json);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                    
+                }
+                
 
             }
             return new List<Question>();
@@ -92,18 +101,26 @@ namespace Iths_csharp_Lab3.Models
         public static List<Quiz> LoadQuiz()
         {
             string folderName = "MyQuiz";
-            string fileName = "MyQuizzes.txt";
+            string fileName = "myQuizzes.txt";
             string localFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             string folderPath = Path.Combine(localFolderPath, folderName);
             string filePath = Path.Combine(folderPath, fileName);
 
             if (File.Exists(filePath))
             {
-                var json = File.ReadAllText(filePath);
-                return JsonConvert.DeserializeObject<List<Quiz>>(json);
-
+                try
+                {
+                    var json = File.ReadAllText(filePath);
+                    return JsonConvert.DeserializeObject<List<Quiz>>(json);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                   
+                }
             }
             return new List<Quiz>();
+
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Iths_csharp_Lab3.Models
         
         public string Category { get; set; }
         public string Statement { get; set; }     
-        public int CorrectAnswer { get; }
+        public int CorrectAnswer { get; set; }
         public string[] Answers { get; set; }
         public string ImagePath { get; set; } = "\\Images\\questionmark.png";
 
@@ -30,8 +30,9 @@ namespace Iths_csharp_Lab3.Models
             Category = category;
             Statement = statement;
             CorrectAnswer = correctAnswer;
-            Answers = answers;
             ImagePath = imagePath;
+            Answers = answers;
+            
             
         }
 

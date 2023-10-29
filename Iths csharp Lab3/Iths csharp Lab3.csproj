@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\ImageBlomma.png" />
+    <None Remove="Images\ImageGKlav.png" />
+    <None Remove="Images\ImagePi.png" />
+    <None Remove="Images\ImageProgramming.png" />
     <None Remove="loggaQuiz1.png" />
     <None Remove="questionmark.png" />
     <None Remove="quizLogga2.png" />
@@ -19,6 +23,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\ImageBlomma.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\ImageGKlav.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\ImagePi.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\ImageProgramming.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\loggaQuiz1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

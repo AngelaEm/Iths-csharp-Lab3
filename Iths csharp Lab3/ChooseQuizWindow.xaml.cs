@@ -28,12 +28,7 @@ namespace Iths_csharp_Lab3
         {
             InitializeComponent();
 
-            if (HandleQuizzes.ListWithAllQuizzes.Count != HandleQuizzes.LoadQuiz().Count)
-            {
-                HandleQuizzes.ListWithAllQuizzes = HandleQuizzes.LoadQuiz();
-            }
-            HandleQuizzes.LoadQuestions();
-            
+                        
             ChooseQuizCB.ItemsSource = HandleQuizzes.ListWithAllQuizzes;    
             
 
@@ -63,10 +58,10 @@ namespace Iths_csharp_Lab3
             {
                 HandleQuizzes.ListWithCurrentCategories.Add("Mathematics");
             }
-            if (MixedQuestionsCB.IsChecked == true)
-            {
-                HandleQuizzes.ListWithCurrentCategories.Add("Mixed Questions");
-            }
+            //if (MixedQuestionsCB.IsChecked == true)
+            //{
+            //    HandleQuizzes.ListWithCurrentCategories.Add("Mixed Questions");
+            //}
         }
 
 
@@ -96,10 +91,10 @@ namespace Iths_csharp_Lab3
                 {
                     HandleQuizzes.ListWithCurrentCategories.Remove("Mathematics");
                 }
-                if (MixedQuestionsCB.IsChecked == false)
-                {
-                    HandleQuizzes.ListWithCurrentCategories.Remove("Mixed Questions");
-                }
+                //if (MixedQuestionsCB.IsChecked == false)
+                //{
+                //    HandleQuizzes.ListWithCurrentCategories.Remove("Mixed Questions");
+                //}
             }
         }
 
@@ -113,8 +108,7 @@ namespace Iths_csharp_Lab3
         {
             if (ChooseQuizCB.SelectedItem is Quiz selectedQuiz)
             {            
-                HandleQuizzes.SelectedQuiz = selectedQuiz;
-                
+                HandleQuizzes.SelectedQuiz = selectedQuiz;               
             }          
         }
 
@@ -136,7 +130,7 @@ namespace Iths_csharp_Lab3
                 MusicCB.IsChecked = false;
                 NatureCB.IsChecked = false;
                 MathematicsCB .IsChecked = false;
-                MixedQuestionsCB.IsChecked = false;
+                //MixedQuestionsCB.IsChecked = false;
 
                 return;
             }

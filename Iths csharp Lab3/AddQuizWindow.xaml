@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Iths_csharp_Lab3"
         mc:Ignorable="d" FontSize="14" FontWeight="Bold" Background="LightCoral" FontFamily="Comic Sans MS" Foreground="Cyan"
         Title="AddQuizWindow" Height="600" Width="550">
-    <!--<Grid>
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="auto"/>
@@ -47,7 +47,7 @@
         <Image x:Name="BildLogga" Source="\Images\quizLogga2.png" Width="350" Height="110" Grid.Column="2" Grid.Row="2" Grid.RowSpan="2"  VerticalAlignment="Center"/>
 
         <Label Content="Name:" Grid.Column="1" Grid.Row="5"/>
-        <TextBox x:Name="QuizNameTB" Text="Enter quizname here" Grid.Column="2" Grid.Row="5" FontSize="12" Width="320" Margin="3" AcceptsReturn="true" TextWrapping="Wrap"
+        <TextBox x:Name="QuizNameTB" Text="Enter quizname here" TextChanged="QuizNameTB_TextChanged" Grid.Column="2" Grid.Row="5" FontSize="12" Width="320" Margin="3" AcceptsReturn="true" TextWrapping="Wrap"
                  GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" />
         <Label Content="Category:" Grid.Column="1" Grid.Row="7"/>
         <TextBox x:Name="CategoryNameTB" Text="Enter category here" Grid.Column="2" Grid.Row="7" FontSize="12" Width="320" Margin ="3" AcceptsReturn="true" TextWrapping="Wrap"
@@ -98,5 +98,5 @@
                 VerticalAlignment="Center" Background="cyan" Foreground="LightCoral" Click="GoToChooseQuiz_Click" />
 
 
-    </Grid>-->
+    </Grid>
 </Window>
