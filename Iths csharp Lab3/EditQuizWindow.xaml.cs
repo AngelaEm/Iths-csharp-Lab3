@@ -44,7 +44,6 @@ namespace Iths_csharp_Lab3
         private void EditQuizCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-
             if (EditQuizCB.SelectedItem is Quiz selectedQuiz)
             {
 
@@ -101,8 +100,7 @@ namespace Iths_csharp_Lab3
 
             HandleQuizzes.SaveQuizzesToFile(HandleQuizzes.ListWithAllQuizzes);
 
-            ResetFields();
-
+            
         }
 
         private void ResetFields()
@@ -142,6 +140,36 @@ namespace Iths_csharp_Lab3
             ChooseQuizWindow chooseQuizWindow = new ChooseQuizWindow();
             chooseQuizWindow.Show();
             this.Close();
+        }
+
+        private void RemoveQuestionButton_Click(object sender, RoutedEventArgs e)
+        {
+            currentQuiz.Questions.Remove(currentQuestion);
+            ResetFields();
+            HandleQuizzes.SaveQuizzesToFile(HandleQuizzes.ListWithAllQuizzes);
+            MessageBox.Show("Successfully removed from quiz");
+            EditQuizWindow editQuizWindow = new EditQuizWindow();
+            editQuizWindow.Show();
+            this.Close();
+            
+        }
+
+        private void AddQuestionButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentQuiz == null)
+            {
+                MessageBox.Show("Please select a quiz!");
+            }
+
+            else
+            {
+                AddQuizWindow addQuizWindow = new AddQuizWindow();
+                addQuizWindow.currentQuiz = currentQuiz;
+                addQuizWindow.QuizNameTB.Text = currentQuiz.Title;
+                addQuizWindow.Show();
+                this.Close();
+            }
+            
         }
     }
 }

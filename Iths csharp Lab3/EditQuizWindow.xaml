@@ -75,7 +75,7 @@
 
         <Label Content="Edit Question" FontWeight="Bold" Background="Cyan" Grid.Column="5" Grid.Row="3" Width="270"/>
         <TextBox Text="{Binding Statement}" x:Name="ChangeQuestionTB" Grid.Column="5" Grid.Row="5"  FontSize="12" Width="270" Height="80"
-                 AcceptsReturn="true" TextWrapping="Wrap"/>
+                 AcceptsReturn="true" TextWrapping="Wrap" Padding="5"/>
       
         <Grid Grid.Column="5" Grid.Row="6" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
@@ -94,11 +94,11 @@
             </Grid.RowDefinitions>
 
             <TextBox x:Name="ChangeAnswer1TB" Text="{Binding Answers[0]}" FontSize="12" Width="210" Height="30" 
-                     AcceptsReturn="true" TextWrapping="Wrap" Grid.Column="0" Grid.Row="1" />
+                     AcceptsReturn="true" TextWrapping="Wrap" Grid.Column="0" Grid.Row="1" Padding="3"/>
             <TextBox x:Name="ChangeAnswer2TB" Text="{Binding Answers[1]}" FontSize="12" Width="210" Height="30" 
-                     AcceptsReturn="true" TextWrapping="Wrap" Grid.Column="0" Grid.Row="3"/>
+                     AcceptsReturn="true" TextWrapping="Wrap" Grid.Column="0" Grid.Row="3" Padding="3"/>
             <TextBox x:Name="ChangeAnswer3TB" Text="{Binding Answers[2]}" FontSize="12" Width="210" Height="30" 
-                     AcceptsReturn="true" TextWrapping="Wrap" Grid.Column="0" Grid.Row="5"/>
+                     AcceptsReturn="true" TextWrapping="Wrap" Grid.Column="0" Grid.Row="5" Padding="3"/>
 
             <RadioButton x:Name="Answer1RB" Grid.Column="1" Grid.Row="1" Width="20" Height="20" 
                          VerticalAlignment="Center" HorizontalAlignment="Left"/>
@@ -108,12 +108,12 @@
                           VerticalAlignment="Center" HorizontalAlignment="Left"/>
         </Grid>
 
-        <Button Content="Save changes" FontWeight="Bold" Background="Cyan" BorderBrush="Coral" BorderThickness="2" 
-                Grid.Column="5" Grid.Row="8" Height="40" Click="Submit_Click"/>
-        <Button Content="Remove Question" FontWeight="Bold" Background="Cyan" BorderBrush="Coral" BorderThickness="2"
-                Grid.Column="5" Grid.Row="10" Height="40"/>
-        <!--<Button Content="Add new Question" FontWeight="Bold" Background="Cyan" BorderBrush="Coral" BorderThickness="2"
-                Grid.Column="3" Grid.Row="10" Width="270" Height="40"/>-->
+        <Button Content="Save question" Background="Cyan" BorderBrush="Coral" BorderThickness="2" 
+                Grid.Column="5" Grid.Row="8" Height="40" Width="270" Click="Submit_Click"/>
+        <Button x:Name="RemoveQuestionButton" Content="Remove Question" FontWeight="Bold" Background="Cyan" BorderBrush="Coral" BorderThickness="2"
+                Grid.Column="5" Grid.Row="10" Height="40" Width="270" Click="RemoveQuestionButton_Click" />
+        <Button x:Name="AddQuestionButton" Content="Add new Question" Background="Cyan" BorderBrush="Coral" BorderThickness="2"
+                Grid.Column="5" Grid.Row="12" Width="270" Height="40" Click="AddQuestionButton_Click"/>
 
 
 

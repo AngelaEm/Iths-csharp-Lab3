@@ -34,16 +34,16 @@
 
 
         <TextBlock x:Name ="QuestionTB" TextWrapping="Wrap" Height="80" Width="450" Grid.Column="1" Grid.Row="1" 
-                   Grid.ColumnSpan="3" Background="Cyan" Text="{Binding Statement}"/>
+                   Grid.ColumnSpan="3" Padding="10" Background="Cyan" Text="{Binding Statement}"/>
 
         <Image x:Name="QuestionImage" Source="\Images\questionmark.png" Width="200" Height="100"  Grid.Column="2" Grid.Row="3"/>
 
         <Button x:Name="Answer1Button" Content="{Binding Answers[0]}" Height="60" Width="250" Grid.Column="1" Grid.Row="5"  
-                VerticalAlignment="Center" Background="Cyan" Margin="5" Click="Answer1Button_Click"/>
+                VerticalAlignment="Center" Background="Cyan" BorderBrush="Coral" BorderThickness="2" Click="Answer1Button_Click" />
         <Button x:Name="Answer2Button" Content="{Binding Answers[1]}" Height="60" Width="250" Grid.Column="2" Grid.Row="5"  
-                VerticalAlignment="Center" Background="Cyan" Margin="5" Click="Answer2Button_Click"/>
+                VerticalAlignment="Center" Background="Cyan" BorderBrush="Coral" BorderThickness="2" Click="Answer2Button_Click"/>
         <Button x:Name="Answer3Button" Content="{Binding Answers[2]}" Height="60" Width="250" Grid.Column="3" Grid.Row="5"  
-                VerticalAlignment="Center" Background="Cyan" Margin="5" Click="Answer3Button_Click"/>
+                VerticalAlignment="Center" Background="Cyan" BorderBrush="Coral" BorderThickness="2" Click="Answer3Button_Click"/>
 
         <TextBlock x:Name="ShowScoreTB" Text="Score" Foreground="Cyan" Grid.Column="1" Grid.Row="7" FontSize="20" Width="200" Height="30"/>
         <TextBlock x:Name="ScoreTB" Text="Percentage" Foreground="Cyan" Grid.Column="2" Grid.Row="7" FontSize="20" Width="200" Height="30"/>

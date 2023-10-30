@@ -22,7 +22,7 @@ namespace Iths_csharp_Lab3
     // </summary>
     public partial class AddQuizWindow : Window
     {
-        Quiz currentQuiz = new Quiz();
+        public Quiz currentQuiz { get; set; } = new Quiz();
 
         public AddQuizWindow()
         {
@@ -68,11 +68,12 @@ namespace Iths_csharp_Lab3
             }
 
             currentQuiz.Title = QuizNameTB.Text;
+
             HandleQuizzes.ListWithAllQuizzes.Add(currentQuiz);
             HandleQuizzes.SaveQuizzesToFile(HandleQuizzes.ListWithAllQuizzes);
             MessageBox.Show($"Quiz added with title: {currentQuiz.Title}");
-            ChooseQuizWindow choosequizWindow = new ChooseQuizWindow();
-            choosequizWindow.Show();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
             this.Close();
         }
 
@@ -94,10 +95,10 @@ namespace Iths_csharp_Lab3
 
             List<string> placeholders = new List<string>
 
-            { "Enter quizname here", "Enter category here", "Enter question here", "Answer 1", "Answer 2", "Answer 3" };
+            { "Enter quizname here", "Enter question here", "Answer 1", "Answer 2", "Answer 3" };
 
 
-            if (string.IsNullOrEmpty(category) || placeholders.Contains(category) || string.IsNullOrEmpty(statement) || placeholders.Contains(statement) || answers.Any(answer => string.IsNullOrWhiteSpace(answer) || placeholders.Contains(answer)))
+            if (string.IsNullOrEmpty(statement) || placeholders.Contains(statement) || answers.Any(answer => string.IsNullOrWhiteSpace(answer) || placeholders.Contains(answer)))
             {
                 MessageBox.Show("Please enter text in all fields!");
                 return;
@@ -124,8 +125,10 @@ namespace Iths_csharp_Lab3
             }
 
             currentQuiz.AddQuestion(category, statement, correct, imagePath, answers);
+            
+            HandleQuizzes.SaveQuizzesToFile(HandleQuizzes.ListWithAllQuizzes);
 
-            MessageBox.Show($"Question added with {category}, {statement}, {answers[0]}, {answers[1]}, {answers[2]}");
+            MessageBox.Show($"Question successfully added!");
 
             CategoryNameTB.Text = string.Empty;
             AddQuestionTB.Text = string.Empty;
@@ -146,7 +149,7 @@ namespace Iths_csharp_Lab3
                 if (QuizNameTB.Text == quizz.Title)
                 {
                     
-                    MessageBox.Show($"Quiz already exits.");
+                    MessageBox.Show($"Your questions will be added to the already existing quiz {quizz.Title}!");
                     break;
                 }
             }

@@ -95,15 +95,15 @@ namespace Iths_csharp_Lab3.Models
         //        catch (Exception e)
         //        {
         //            MessageBox.Show(e.Message);
-                    
+
         //        }
-                
+
 
         //    }
         //    return new List<Question>();
         //}
 
-        public static List<Quiz> LoadQuiz()
+        public static  List<Quiz> LoadQuiz()
         {
             string folderName = "MyQuiz";
             string fileName = "myQuizzes.txt";

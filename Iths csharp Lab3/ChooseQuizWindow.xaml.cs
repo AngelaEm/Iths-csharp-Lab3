@@ -106,6 +106,16 @@ namespace Iths_csharp_Lab3
             }          
         }
 
+        private void ResetChoices()
+        {
+            HandleQuizzes.ListWithCurrentCategories.Clear();
+            ChooseQuizCB.SelectedItem = null;
+            ProgrammingCB.IsChecked = false;
+            MusicCB.IsChecked = false;
+            NatureCB.IsChecked = false;
+            MathematicsCB.IsChecked = false;
+        }
+
 
         /// <summary> 
         /// Click event for the GoToGame button. Opens the Game window and closes current window. If user selected a quiz 
@@ -118,12 +128,9 @@ namespace Iths_csharp_Lab3
             if ((ChooseQuizCB.SelectedItem != null && HandleQuizzes.ListWithCurrentCategories.Count != 0) || (ChooseQuizCB.SelectedItem == null && HandleQuizzes.ListWithCurrentCategories.Count == 0))
             {
                 MessageBox.Show("Please choose quiz or categories!");
-                HandleQuizzes.ListWithCurrentCategories.Clear();
-                ChooseQuizCB.SelectedItem = null;
-                ProgrammingCB.IsChecked = false;
-                MusicCB.IsChecked = false;
-                NatureCB.IsChecked = false;
-                MathematicsCB .IsChecked = false;
+
+                ResetChoices();
+                
                 
                 return;
             }
@@ -133,13 +140,14 @@ namespace Iths_csharp_Lab3
             this.Close();
         }
 
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
         }
+
+        
 
         
     }
