@@ -151,7 +151,7 @@ namespace Iths_csharp_Lab3.Models
             // Nature
             AddQuestion("Nature", "What is the largest species of penguin?", 0, "\\Images\\ImageBlomma.png", new string[] { "Emperor Penguin", "African Penguin", "Little Blue Penguin" });
             AddQuestion("Nature", "What is the world's largest land mammal?", 1, "\\Images\\ImageBlomma.png", new string[] { "Giraffe", "African Elephant", "Rhinoceros" });
-            AddQuestion("Nature", "Which plant is known for its ability to retain water in arid conditions?", 2, "\\Images\\ImageVäxt.png", new string[] { "Fern", "Sunflower", "Cactus" });
+            AddQuestion("Nature", "Which plant is known for its ability to retain water in arid conditions?", 2, "\\Images\\ImageBlomma.png", new string[] { "Fern", "Sunflower", "Cactus" });
             AddQuestion("Nature", "Which plant is known to have a soothing effect on burns?", 0, "\\Images\\ImageBlomma.png", new string[] { "Aloe Vera", "Tulip", "Rose" });
             AddQuestion("Nature", "Which of these animals is a marsupial?", 2, "\\Images\\ImageBlomma.png", new string[] { "Lion", "Elephant", "Kangaroo" });
             AddQuestion("Nature", "Which planet is known as the 'Red Planet'?", 0, "\\Images\\ImageBlomma.png", new string[] { "Mars", "Venus", "Jupiter" });

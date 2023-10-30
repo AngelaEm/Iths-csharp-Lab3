@@ -100,7 +100,7 @@ namespace Iths_csharp_Lab3
 
             HandleQuizzes.SaveQuizzesToFile(HandleQuizzes.ListWithAllQuizzes);
 
-            
+            MessageBox.Show("Sucessfully saved to quiz!");
         }
 
         private void ResetFields()

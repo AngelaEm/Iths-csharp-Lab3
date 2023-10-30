@@ -30,6 +30,7 @@ namespace Iths_csharp_Lab3
 
                         
             ChooseQuizCB.ItemsSource = HandleQuizzes.ListWithAllQuizzes;    
+            this.DataContext = ChooseQuizCB;
             
 
         }

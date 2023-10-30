@@ -93,11 +93,11 @@
 
         <Button x:Name="AddQuestion" Content="Add Question" Grid.Column="3" Grid.Row="17" Width="150" Height="30"
                 VerticalAlignment="Center" Background="cyan" BorderBrush="Coral" BorderThickness="2" Click="AddQuestion_Click" />
-        <Button x:Name="AddQuiz" Content="Add Quiz" Grid.Column="3" Grid.Row="19" Width="150" Height="30"
+        <Button x:Name="AddQuiz" Content="Submit Quiz" Grid.Column="3" Grid.Row="19" Width="150" Height="30"
                 VerticalAlignment="Center" Background="cyan" BorderBrush="Coral" BorderThickness="2" Click="AddQuiz_Click" />
-        <Button x:Name="GoToChooseQuiz" Content="Play Quiz" Grid.Column="3" Grid.Row="21" Width="150" Height="30"
+        <Button x:Name="GoToChooseQuiz" Content="Choose Quiz Menu" Grid.Column="3" Grid.Row="21" Width="150" Height="30"
                 VerticalAlignment="Center" Background="cyan" BorderBrush="Coral" BorderThickness="2" Click="GoToChooseQuiz_Click" />
-        <Button x:Name="BackToMain" Content="Back to Main" Grid.Column="3" Grid.Row="23" Width="150" Height="30"
+        <Button x:Name="BackToMain" Content="Main menu" Grid.Column="3" Grid.Row="23" Width="150" Height="30"
                 VerticalAlignment="Center" Background="cyan" BorderBrush="Coral" BorderThickness="2" Click="BackToMain_Click"  />
 
 
