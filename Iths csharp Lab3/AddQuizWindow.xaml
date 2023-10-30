@@ -22,9 +22,9 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="15"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="10"/>
             <RowDefinition Height="auto"/>
@@ -48,17 +48,12 @@
 
         <Image x:Name="BildLogga" Source="\Images\quizzyLogga.png" Width="350" Height="110" Grid.Column="3" Grid.Row="1" Grid.RowSpan="2"  VerticalAlignment="Center"/>
 
-        <Label Content="Name:" Grid.Column="2" Grid.Row="5"/>
+        <Label Content="Quiz Name:" Grid.Column="2" Grid.Row="5"/>
         <TextBox x:Name="QuizNameTB" Text="Enter quizname here" TextChanged="QuizNameTB_TextChanged" Grid.Column="3" Grid.Row="5" FontSize="12" Width="320" 
                  AcceptsReturn="true" TextWrapping="Wrap" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Padding="0,3,3,3" />
-        <Label Content="Category:" Grid.Column="2" Grid.Row="7"/>
-        <TextBox x:Name="CategoryNameTB" Text="Enter category here" Grid.Column="3" Grid.Row="7" FontSize="12" Width="320" AcceptsReturn="true" TextWrapping="Wrap"
-                 GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Padding="0,3,3,3"/>
-        <Label Content="Image URL:" Grid.Column="2" Grid.Row="9"/>
-        <TextBox x:Name="ImageTB" Text="\Images\questionmark.png" Grid.Column="3" Grid.Row="9" FontSize="12" Width="320" AcceptsReturn="false" TextWrapping="NoWrap"
-                 GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Padding="0,3,3,3"/>
-        <Label Content="Question:" Grid.Column="2" Grid.Row="11"/>
-        <TextBox x:Name="AddQuestionTB" Text="Enter question here" Grid.Column="3" Grid.Row="11" FontSize="12" Width="320" AcceptsReturn="true" TextWrapping="Wrap"
+
+        <Label Content="Question:" Grid.Column="2" Grid.Row="7"/>
+        <TextBox x:Name="AddQuestionTB" Text="Enter question here" Grid.Column="3" Grid.Row="7" FontSize="12" Width="320" AcceptsReturn="true" TextWrapping="Wrap"
                  GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Padding="0,3,3,3"/>
         <Label Content="Answers:" Grid.Column="2" Grid.Row="13"/>
 
@@ -72,6 +67,10 @@
         </StackPanel>
 
         <Label Content="Correct:" Grid.Column="2" Grid.Row="15" />
+
+        <Label Content="Image URL:" Grid.Column="2" Grid.Row="9"/>
+        <TextBox x:Name="ImageTB" Text="\Images\questionmark.png" Grid.Column="3" Grid.Row="9" FontSize="12" Width="320" AcceptsReturn="false" TextWrapping="NoWrap"
+                 GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Padding="0,3,3,3"/>
 
         <Grid Grid.Column="3" Grid.Row="15">
                 <Grid.ColumnDefinitions>

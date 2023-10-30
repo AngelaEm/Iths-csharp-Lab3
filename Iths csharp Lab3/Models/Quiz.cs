@@ -55,11 +55,18 @@ namespace Iths_csharp_Lab3.Models
         /// <param name="statement">Question statement</param>
         /// <param name="correctAnswer">Question correct answer</param>
         /// <param name="answers">params with answers</param>
-        public void AddQuestion(string category, string statement, int correctAnswer, params string[] answers)
+        public void AddQuestion(string category, string statement, int correctAnswer, string[] answers)
         {
             Question newQuestion = new Question(category, statement, correctAnswer, answers);
             _questions.Add(newQuestion);
             
+        }
+
+        public void AddQuestion(string statement, int correctAnswer, string imagePath, string[] answers)
+        {
+            Question newQuestion = new Question(statement, correctAnswer, imagePath, answers);
+            _questions.Add(newQuestion);
+
         }
 
         /// <summary>
@@ -70,7 +77,7 @@ namespace Iths_csharp_Lab3.Models
         /// <param name="correctAnswer">Question correct answer</param>
         /// <param name="imagePath">Question imagepath</param>
         /// <param name="answers">params with answers</param>
-        public void AddQuestion(string category, string statement, int correctAnswer, string imagePath, params string[] answers)
+        public void AddQuestion(string category, string statement, int correctAnswer, string imagePath, string[] answers)
         {
             Question newQuestion = new Question(category, statement, correctAnswer, imagePath, answers);
             _questions.Add(newQuestion);

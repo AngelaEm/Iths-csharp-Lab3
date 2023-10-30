@@ -65,7 +65,7 @@ namespace Iths_csharp_Lab3.Models
         //    File.WriteAllText(filePath, json);
         //}
 
-        public static void SaveQuizzesToFile(List<Quiz> listWithQuizzes)
+        public static async Task SaveQuizzesToFile(List<Quiz> listWithQuizzes)
         {
             string folderName = "MyQuiz";
             string localFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
@@ -73,7 +73,7 @@ namespace Iths_csharp_Lab3.Models
             var json = JsonConvert.SerializeObject(listWithQuizzes, Formatting.Indented);
             string fileName = "myQuizzes.txt";
             string filePath = Path.Combine(folderPath, fileName);
-            File.WriteAllText(filePath, json);
+            await File.WriteAllTextAsync(filePath, json);
         }
 
 

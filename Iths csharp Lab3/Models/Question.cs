@@ -8,15 +8,15 @@ using System.IO;
 namespace Iths_csharp_Lab3.Models
 {
     public class Question
-    {    
-        
-        public string Category { get; set; }
+    {
+
+        public string Category { get; set; } = "Unknown";
         public string Statement { get; set; }     
         public int CorrectAnswer { get; set; }
         public string[] Answers { get; set; }
         public string ImagePath { get; set; } = "\\Images\\questionmark.png";
 
-        public Question(string category, string statement, int correctAnswer, params string[] answers)
+        public Question(string category, string statement, int correctAnswer, string[] answers)
         {     
             Category = category;
             Statement = statement;          
@@ -25,7 +25,7 @@ namespace Iths_csharp_Lab3.Models
             
         }
 
-        public Question(string category, string statement, int correctAnswer, string imagePath, params string[] answers)
+        public Question(string category, string statement, int correctAnswer, string imagePath, string[] answers)
         {
             Category = category;
             Statement = statement;
@@ -34,6 +34,17 @@ namespace Iths_csharp_Lab3.Models
             Answers = answers;
             
             
+        }
+
+        public Question(string statement, int correctAnswer, string imagePath, string[] answers)
+        {
+            
+            Statement = statement;
+            CorrectAnswer = correctAnswer;
+            ImagePath = imagePath;
+            Answers = answers;
+
+
         }
 
         public Question()

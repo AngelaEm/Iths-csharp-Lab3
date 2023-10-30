@@ -27,9 +27,7 @@ namespace Iths_csharp_Lab3
         public AddQuizWindow()
         {
             InitializeComponent();
-
         }
-
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -47,13 +45,31 @@ namespace Iths_csharp_Lab3
             if (string.IsNullOrWhiteSpace(textBox.Text))
             {
                 textBox.Text = "";
-
             }
         }
 
         private void AddQuiz_Click(object sender, RoutedEventArgs e)
         {
-           
+            MainWindow mainWindow = new MainWindow();
+
+            bool quizExist = false;
+
+            foreach (var quiz in HandleQuizzes.ListWithAllQuizzes)
+            {
+                if (quiz.Title == currentQuiz.Title)
+                {                   
+                    quizExist = true;
+                    break;
+                }
+            }
+
+            if (quizExist)
+            {
+                MessageBox.Show($"Quiz exists");
+                return;
+                mainWindow.Show();
+                this.Close();
+            }
 
             if (string.IsNullOrEmpty(QuizNameTB.Text))
             {
@@ -71,8 +87,7 @@ namespace Iths_csharp_Lab3
 
             HandleQuizzes.ListWithAllQuizzes.Add(currentQuiz);
             HandleQuizzes.SaveQuizzesToFile(HandleQuizzes.ListWithAllQuizzes);
-            MessageBox.Show($"Quiz added with title: {currentQuiz.Title}");
-            MainWindow mainWindow = new MainWindow();
+            MessageBox.Show($"Quiz added with title: {currentQuiz.Title}");          
             mainWindow.Show();
             this.Close();
         }
@@ -86,7 +101,7 @@ namespace Iths_csharp_Lab3
 
         private void AddQuestion_Click(object sender, RoutedEventArgs e)
         {
-            string category = CategoryNameTB.Text;
+            
             string statement = AddQuestionTB.Text;
             string[] answers = new string[] { Answer1TB.Text, Answer2TB.Text, Answer3TB.Text };
             string imagePath = ImageTB.Text;
@@ -103,8 +118,6 @@ namespace Iths_csharp_Lab3
                 MessageBox.Show("Please enter text in all fields!");
                 return;
             }
-
-
             if (Answer1RB.IsChecked == true)
             {
                 correct = 0;
@@ -124,13 +137,12 @@ namespace Iths_csharp_Lab3
                 return;
             }
 
-            currentQuiz.AddQuestion(category, statement, correct, imagePath, answers);
+            currentQuiz.AddQuestion(statement, correct, imagePath, answers);
             
             HandleQuizzes.SaveQuizzesToFile(HandleQuizzes.ListWithAllQuizzes);
 
             MessageBox.Show($"Question successfully added!");
-
-            CategoryNameTB.Text = string.Empty;
+           
             AddQuestionTB.Text = string.Empty;
             ImageTB.Text = "\\Images\\questionmark.png";
             Answer1TB.Text = string.Empty;
