@@ -29,6 +29,11 @@ namespace Iths_csharp_Lab3
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Clears textboxes.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
@@ -38,67 +43,13 @@ namespace Iths_csharp_Lab3
                 textBox.Foreground = Brushes.Black;
             }
         }
+    
 
-        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-            if (string.IsNullOrWhiteSpace(textBox.Text))
-            {
-                textBox.Text = "";
-            }
-        }
-
-        private void AddQuiz_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow mainWindow = new MainWindow();
-
-            bool quizExist = false;
-
-            foreach (var quiz in HandleQuizzes.ListWithAllQuizzes)
-            {
-                if (quiz.Title == currentQuiz.Title)
-                {                   
-                    quizExist = true;
-                    break;
-                }
-            }
-
-            if (quizExist)
-            {
-                MessageBox.Show($"Quiz exists");
-                return;
-                mainWindow.Show();
-                this.Close();
-            }
-
-            if (string.IsNullOrEmpty(QuizNameTB.Text))
-            {
-                MessageBox.Show($"Please add a name!");
-                return;
-            }           
-
-            if (currentQuiz.Questions.Count == 0)
-            {
-                MessageBox.Show($"Please add at least one question!");
-                return;
-            }
-
-            currentQuiz.Title = QuizNameTB.Text;
-
-            HandleQuizzes.ListWithAllQuizzes.Add(currentQuiz);
-            HandleQuizzes.SaveQuizzesToFile(HandleQuizzes.ListWithAllQuizzes);
-            MessageBox.Show($"Quiz added with title: {currentQuiz.Title}");          
-            mainWindow.Show();
-            this.Close();
-        }
-
-        private void GoToChooseQuiz_Click(object sender, RoutedEventArgs e)
-        {
-            ChooseQuizWindow chooseQuizWindow = new ChooseQuizWindow();
-            chooseQuizWindow.Show();
-            this.Close();
-        }
-
+        /// <summary>
+        /// Add question to current quiz and save updated quiz to textfile.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddQuestion_Click(object sender, RoutedEventArgs e)
         {
             
@@ -154,23 +105,97 @@ namespace Iths_csharp_Lab3
 
         }
 
+
+        /// <summary>
+        /// Checks if quiz already exists, if it has a title and if it has at least one question and then add quiz to list with all quizzes and save this list to textfile.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddQuiz_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+
+            bool quizExist = false;
+
+            foreach (var quiz in HandleQuizzes.ListWithAllQuizzes)
+            {
+                if (quiz.Title == currentQuiz.Title)
+                {
+                    quizExist = true;
+                    break;
+                }
+            }
+
+            if (quizExist)
+            {
+                MessageBox.Show($"Quiz exists");
+                return;
+                
+            }
+
+            if (string.IsNullOrEmpty(QuizNameTB.Text))
+            {
+                MessageBox.Show($"Please add a name!");
+                return;
+            }
+
+            if (currentQuiz.Questions.Count == 0)
+            {
+                MessageBox.Show($"Please add at least one question!");
+                return;
+            }
+
+            currentQuiz.Title = QuizNameTB.Text;
+
+            HandleQuizzes.ListWithAllQuizzes.Add(currentQuiz);
+            HandleQuizzes.SaveQuizzesToFile(HandleQuizzes.ListWithAllQuizzes);
+            MessageBox.Show($"Quiz added with title: {currentQuiz.Title}");
+            mainWindow.Show();
+            this.Close();
+
+        }
+
+
+        /// <summary>
+        /// Checks if QuizTitle written in QuisNameTB exist in ListWithAllQuizzes and print message that question will be added in existing quiz.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void QuizNameTB_TextChanged(object sender, TextChangedEventArgs e)
         {
             foreach (var quizz in HandleQuizzes.ListWithAllQuizzes)
             {
                 if (QuizNameTB.Text == quizz.Title)
-                {
-                    
+                {                   
                     MessageBox.Show($"Your questions will be added to the already existing quiz {quizz.Title}!");
                     break;
                 }
             }
         }
 
+
+        /// <summary>
+        /// Click event go to main window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BackToMain_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
+            this.Close();
+        }
+
+
+        /// <summary>
+        /// Click event go to choose quiz window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GoToChooseQuiz_Click(object sender, RoutedEventArgs e)
+        {
+            ChooseQuizWindow chooseQuizWindow = new ChooseQuizWindow();
+            chooseQuizWindow.Show();
             this.Close();
         }
     }

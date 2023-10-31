@@ -31,8 +31,7 @@ namespace Iths_csharp_Lab3.Models
             Statement = statement;
             CorrectAnswer = correctAnswer;
             ImagePath = imagePath;
-            Answers = answers;
-            
+            Answers = answers;         
             
         }
 
@@ -44,14 +43,12 @@ namespace Iths_csharp_Lab3.Models
             ImagePath = imagePath;
             Answers = answers;
 
-
         }
 
         public Question()
         {
-            
-        }
 
+        }
     }
 }
 

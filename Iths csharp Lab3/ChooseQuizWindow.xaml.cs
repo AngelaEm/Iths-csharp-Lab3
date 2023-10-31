@@ -27,14 +27,18 @@ namespace Iths_csharp_Lab3
         public ChooseQuizWindow()
         {
             InitializeComponent();
-
                         
             ChooseQuizCB.ItemsSource = HandleQuizzes.ListWithAllQuizzes;    
             this.DataContext = ChooseQuizCB;
             
-
         }
-        
+
+        /// <summary>
+        /// Event handler for checkbox checked events. Adds category in the SelectedCategories list based 
+        /// on which checkboxes that are checked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CategoryChecked(object sender, RoutedEventArgs e)
         {
             
@@ -58,8 +62,7 @@ namespace Iths_csharp_Lab3
             if (MathematicsCB.IsChecked == true)
             {
                 HandleQuizzes.ListWithCurrentCategories.Add("Mathematics");
-            }
-            
+            }        
         }
 
 
@@ -88,8 +91,7 @@ namespace Iths_csharp_Lab3
                 if (MathematicsCB.IsChecked == false)
                 {
                     HandleQuizzes.ListWithCurrentCategories.Remove("Mathematics");
-                }
-               
+                }          
             }
         }
 
@@ -107,6 +109,10 @@ namespace Iths_csharp_Lab3
             }          
         }
 
+
+        /// <summary>
+        /// Clears list with current categories clears all checkboxes and clears combobox selected item
+        /// </summary>
         private void ResetChoices()
         {
             HandleQuizzes.ListWithCurrentCategories.Clear();
@@ -131,8 +137,7 @@ namespace Iths_csharp_Lab3
                 MessageBox.Show("Please choose quiz or categories!");
 
                 ResetChoices();
-                
-                
+                             
                 return;
             }
 
@@ -141,14 +146,18 @@ namespace Iths_csharp_Lab3
             this.Close();
         }
 
+
+        /// <summary>
+        /// Click event go to main window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
         }
-
-        
 
         
     }

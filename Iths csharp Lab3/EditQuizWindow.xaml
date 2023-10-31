@@ -55,7 +55,6 @@
 
         <Image Source="\Images\questionmark.png" Grid.Column="1" Grid.Row="8" Grid.RowSpan="5" Height="150"/>
 
-
         <Label Content="Choose Question" FontWeight="Bold" Background="Cyan" Grid.Column="3" Grid.Row="3" Width="270"/>
         <ListBox x:Name="QuestionLB" Grid.Column="3" Grid.Row="5" Grid.RowSpan="2" SelectionChanged="QuestionLB_SelectionChanged" 
                  Width="270" Height="150">
@@ -114,8 +113,6 @@
                 Grid.Column="5" Grid.Row="10" Height="40" Width="270" Click="RemoveQuestionButton_Click" />
         <Button x:Name="AddQuestionButton" Content="Add new Question" Background="Cyan" BorderBrush="Coral" BorderThickness="2"
                 Grid.Column="5" Grid.Row="12" Width="270" Height="40" Click="AddQuestionButton_Click"/>
-
-
 
 
     </Grid>

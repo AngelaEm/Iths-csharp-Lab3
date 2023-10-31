@@ -16,8 +16,11 @@ namespace Iths_csharp_Lab3.Models
     public class Quiz
     {
         private List<Question> _questions;
+
         public List<Question> Questions => _questions;
+
         private string _title = string.Empty;
+
         public string Title { get; set; }
 
         public Quiz(string title)
@@ -31,8 +34,6 @@ namespace Iths_csharp_Lab3.Models
         {
             _questions = new List<Question>();
         }
-
-
 
 
         /// <summary>
@@ -62,12 +63,21 @@ namespace Iths_csharp_Lab3.Models
             
         }
 
+
+        /// <summary>
+        /// Add question to List with questions
+        /// </summary>
+        /// <param name="statement">Question statement</param>
+        /// <param name="correctAnswer">Question correct answer</param>
+        /// <param name="imagePath">Question imagepath</param>
+        /// <param name="answers">Array with answers</param>
         public void AddQuestion(string statement, int correctAnswer, string imagePath, string[] answers)
         {
             Question newQuestion = new Question(statement, correctAnswer, imagePath, answers);
             _questions.Add(newQuestion);
 
         }
+
 
         /// <summary>
         /// Add question to List with questions
@@ -76,7 +86,7 @@ namespace Iths_csharp_Lab3.Models
         /// <param name="statement">Question statement</param>
         /// <param name="correctAnswer">Question correct answer</param>
         /// <param name="imagePath">Question imagepath</param>
-        /// <param name="answers">params with answers</param>
+        /// <param name="answers">Array with answers</param>
         public void AddQuestion(string category, string statement, int correctAnswer, string imagePath, string[] answers)
         {
             Question newQuestion = new Question(category, statement, correctAnswer, imagePath, answers);
@@ -84,6 +94,7 @@ namespace Iths_csharp_Lab3.Models
 
         }
 
+        
         /// <summary>
         /// Add question to Quiz
         /// </summary>
@@ -104,9 +115,6 @@ namespace Iths_csharp_Lab3.Models
         }
 
         
-        
-
-
         /// <summary>
         /// Generate questions and add question to list
         /// </summary>
@@ -162,9 +170,12 @@ namespace Iths_csharp_Lab3.Models
 
         }
 
+
+        /// <summary>
+        /// Generates quizzes and add quizzes to list
+        /// </summary>
         public void GenerateQuizzes()
         {
-
 
             Quiz nature = new Quiz("Nature");
             Quiz mathematics = new Quiz("Mathematics");
