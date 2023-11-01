@@ -97,8 +97,8 @@
                 VerticalAlignment="Center" Background="cyan" BorderBrush="Coral" BorderThickness="2" Click="AddQuiz_Click" />
         <Button x:Name="GoToChooseQuiz" Content="Choose Quiz Menu" Grid.Column="3" Grid.Row="21" Width="150" Height="30"
                 VerticalAlignment="Center" Background="cyan" BorderBrush="Coral" BorderThickness="2" Click="GoToChooseQuiz_Click" />
-        <Button x:Name="BackToMain" Content="Main menu" Grid.Column="3" Grid.Row="23" Width="150" Height="30"
-                VerticalAlignment="Center" Background="cyan" BorderBrush="Coral" BorderThickness="2" Click="BackToMain_Click"  />
+        <Button x:Name="EditQuizWindow" Content="Edit Quiz menu" Grid.Column="3" Grid.Row="23" Width="150" Height="30"
+                VerticalAlignment="Center" Background="cyan" BorderBrush="Coral" BorderThickness="2" Click="EditQuizWindow_Click" />
 
 
     </Grid>

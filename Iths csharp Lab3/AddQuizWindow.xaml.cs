@@ -119,8 +119,9 @@ namespace Iths_csharp_Lab3
 
             foreach (var quiz in HandleQuizzes.ListWithAllQuizzes)
             {
-                if (quiz.Title == currentQuiz.Title)
+                if (quiz.Title == QuizNameTB.Text)
                 {
+                    currentQuiz = quiz;
                     quizExist = true;
                     break;
                 }
@@ -128,7 +129,7 @@ namespace Iths_csharp_Lab3
 
             if (quizExist)
             {
-                MessageBox.Show($"Quiz exists");
+                MessageBox.Show($"Quiz already exists. Please add another question or press another button.");
                 return;
                 
             }
@@ -175,19 +176,6 @@ namespace Iths_csharp_Lab3
 
 
         /// <summary>
-        /// Click event go to main window
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BackToMain_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Close();
-        }
-
-
-        /// <summary>
         /// Click event go to choose quiz window
         /// </summary>
         /// <param name="sender"></param>
@@ -196,6 +184,19 @@ namespace Iths_csharp_Lab3
         {
             ChooseQuizWindow chooseQuizWindow = new ChooseQuizWindow();
             chooseQuizWindow.Show();
+            this.Close();
+        }
+
+
+        /// <summary>
+        /// Click event to edit quiz window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EditQuizWindow_Click(object sender, RoutedEventArgs e)
+        {
+            EditQuizWindow editQuizWindow = new EditQuizWindow();
+            editQuizWindow.Show();
             this.Close();
         }
     }
