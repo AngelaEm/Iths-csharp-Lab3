@@ -154,6 +154,7 @@ namespace Iths_csharp_Lab3
                 correctAnsweredQuestions = 0;
                 answeredQuestions = 0;
                 HandleQuizzes.ListWithCurrentQuestions.Clear();
+                HandleQuizzes.ListWithCurrentCategories.Clear();
                 HandleQuizzes.SelectedQuiz = null;
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
@@ -274,6 +275,7 @@ namespace Iths_csharp_Lab3
         private void ChooseQuizWindow_Click(object sender, RoutedEventArgs e)
         {
             HandleQuizzes.ListWithCurrentQuestions.Clear();
+            HandleQuizzes.ListWithCurrentCategories.Clear();
             ChooseQuizWindow chooseQuizWindow = new ChooseQuizWindow();
             chooseQuizWindow.Show();
             this.Close();
@@ -288,6 +290,7 @@ namespace Iths_csharp_Lab3
         private void BackToMainWindow_Click(object sender, RoutedEventArgs e)
         {
             HandleQuizzes.ListWithCurrentQuestions.Clear();
+            HandleQuizzes.ListWithCurrentCategories.Clear();
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();

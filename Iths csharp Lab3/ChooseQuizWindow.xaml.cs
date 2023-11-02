@@ -27,9 +27,11 @@ namespace Iths_csharp_Lab3
         public ChooseQuizWindow()
         {
             InitializeComponent();
-                        
-            ChooseQuizCB.ItemsSource = HandleQuizzes.ListWithAllQuizzes;    
+
             this.DataContext = ChooseQuizCB;
+
+            ChooseQuizCB.ItemsSource = HandleQuizzes.ListWithAllQuizzes;    
+            
             
         }
 
